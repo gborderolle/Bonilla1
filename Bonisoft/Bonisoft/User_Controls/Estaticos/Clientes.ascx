@@ -1,9 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Clientes.ascx.cs" Inherits="Bonisoft.User_Controls.Clientes" %>
 <h2>Lista de Clientes Particulares</h2>
 
-<asp:Button ID="btnExport" runat="server" Text="Export To Excel" OnClick = "ExportToExcel()" />
-
-
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
 <asp:GridView ID="gridClientes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True"
     CssClass="table table-hover table-striped"

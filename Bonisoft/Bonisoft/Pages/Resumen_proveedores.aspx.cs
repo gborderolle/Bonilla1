@@ -33,6 +33,7 @@ namespace Bonisoft.Pages
             gridClientes.HeaderRow.TableSection = TableRowSection.TableHeader;
 
             gridClientes_lblMessage.Text = string.Empty;
+            ScriptManager.GetCurrent(Page).RegisterPostBackControl(btnExport);
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -1017,7 +1018,67 @@ namespace Bonisoft.Pages
             gridViajesImprimir.DataBind();
         }
 
+        protected void ExportToExcel(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment;filename=Datos.xls");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-excel";
+            using (StringWriter sw = new StringWriter())
+            {
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
 
+                //To Export all pages
+                gridPagos.AllowPaging = false;
+
+                //Hide cells
+                gridPagos.HeaderRow.Cells[0].Visible = false;
+                gridPagos.HeaderRow.Cells[1].Visible = false;
+                gridPagos.HeaderRow.Cells[7].Visible = false;
+
+                gridPagos.HeaderRow.BackColor = Color.White;
+                foreach (TableCell cell in gridPagos.HeaderRow.Cells)
+                {
+                    cell.BackColor = Color.LightBlue;
+                }
+                foreach (GridViewRow row in gridPagos.Rows)
+                {
+                    //Hide cells
+                    row.Cells[0].Visible = false;
+                    row.Cells[1].Visible = false;
+                    row.Cells[7].Visible = false;
+
+                    row.BackColor = Color.White;
+                    foreach (TableCell cell in row.Cells)
+                    {
+                        if (row.RowIndex % 2 == 0)
+                        {
+                            cell.BackColor = Color.LightGray;
+                        }
+                        else
+                        {
+                            cell.BackColor = gridPagos.RowStyle.BackColor;
+                        }
+                        cell.CssClass = "textmode";
+                    }
+                }
+
+                gridPagos.RenderControl(hw);
+
+                //style to format numbers to string
+                string style = @"<style> .textmode { } </style>";
+                Response.Write(style);
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+            }
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
+        }
 
         #endregion General methods
 
