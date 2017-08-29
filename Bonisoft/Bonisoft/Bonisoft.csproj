@@ -236,6 +236,7 @@
     <Content Include="assets\bootstrap\js\bootstrap.js" />
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="assets\bootstrap\js\npm.js" />
+    <Content Include="assets\dist\css\bootstrap.mindf2b.css" />
     <Content Include="assets\dist\css\chosen-sprite%402x.png" />
     <Content Include="assets\dist\css\chosen-sprite.png" />
     <Content Include="assets\dist\css\chosen.css" />
@@ -261,6 +262,8 @@
     <Content Include="assets\dist\css\images\ui-icons_ffd27a_256x240.png" />
     <Content Include="assets\dist\css\images\ui-icons_ffffff_256x240.png" />
     <Content Include="assets\dist\css\jquery.modal.css" />
+    <Content Include="assets\dist\css\landing-page.css" />
+    <Content Include="assets\dist\css\MonthPicker.css" />
     <Content Include="assets\dist\css\pages\images\asc.gif" />
     <Content Include="assets\dist\css\pages\images\bg.gif" />
     <Content Include="assets\dist\css\pages\images\desc.gif" />
@@ -272,6 +275,7 @@
     <Content Include="assets\dist\css\jquery-ui.css" />
     <Content Include="assets\dist\css\pages\Logs.css" />
     <Content Include="assets\dist\css\pages\Modal_styles.css" />
+    <Content Include="assets\dist\css\pages\Resumen_barracas.css" />
     <Content Include="assets\dist\css\pages\Resumen_clientes.css" />
     <Content Include="assets\dist\css\pages\Resumen_fleteros.css" />
     <Content Include="assets\dist\css\pages\Resumen_proveedores.css" />
@@ -305,6 +309,7 @@
     <Content Include="assets\dist\css\pages\Viajes.css" />
     <Content Include="assets\dist\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\dist\fonts\new_layout\glyphicons-halflings-regular.svg" />
     <Content Include="assets\dist\img\avatar.png" />
     <Content Include="assets\dist\img\avatar04.png" />
     <Content Include="assets\dist\img\avatar2.png" />
@@ -321,6 +326,7 @@
     <Content Include="assets\dist\img\credit\visa.png" />
     <Content Include="assets\dist\img\default-50x50.gif" />
     <Content Include="assets\dist\img\icons.png" />
+    <Content Include="assets\dist\img\landing-page.jpg" />
     <Content Include="assets\dist\img\photo1.png" />
     <Content Include="assets\dist\img\photo2.png" />
     <Content Include="assets\dist\img\photo3.jpg" />
@@ -336,10 +342,12 @@
     <Content Include="assets\dist\js\app.js" />
     <Content Include="assets\dist\js\app.min.js" />
     <Content Include="assets\dist\js\AuxiliarFunctions.js" />
+    <Content Include="assets\dist\js\bootstrap.min.js" />
     <Content Include="assets\dist\js\chosen.jquery.js" />
     <Content Include="assets\dist\js\demo.js" />
     <Content Include="assets\dist\js\jquery-3.1.1.min.js" />
     <Content Include="assets\dist\js\jquery-ui.js" />
+    <Content Include="assets\dist\js\jquery.min.js" />
     <Content Include="assets\dist\js\jquery.modal.js" />
     <Content Include="assets\dist\js\jquery.quicksearch.js" />
     <Content Include="assets\dist\js\jquery.tablesorter.js" />
@@ -1218,9 +1226,14 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BonisoftModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="landing-page.html" />
     <Content Include="Models\BonisoftModel.edmx.diagram">
       <DependentUpon>BonisoftModel.edmx</DependentUpon>
     </Content>
+    <Content Include="assets\dist\fonts\new_layout\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\dist\fonts\new_layout\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\dist\fonts\new_layout\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\dist\fonts\new_layout\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\bonisoft - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\bonisoft - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\bonisoft.somee.pubxml" />

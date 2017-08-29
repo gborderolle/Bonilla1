@@ -102,7 +102,6 @@ namespace Bonisoft.User_Controls.Estaticos
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             if (e.CommandName == "InsertNew")
             {
                 GridViewRow row = gridFleteros.FooterRow;
@@ -115,42 +114,49 @@ namespace Bonisoft.User_Controls.Estaticos
                 TextBox txb24 = row.FindControl("txbNew24") as TextBox;
                 if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb23 != null && txb24 != null)
                 {
-                    using (bonisoftEntities context = new bonisoftEntities())
+                    if (!string.IsNullOrWhiteSpace(txb1.Text))
                     {
-                        fletero obj = new fletero();
-                        obj.Nombre = txb1.Text;
-                        obj.Comentarios = txb2.Text;
-                        obj.Direccion = txb3.Text;
-                        obj.Telefono = txb4.Text;
-                        obj.Email = txb23.Text;
-                        obj.Nro_cuenta = txb24.Text;
-                        obj.Depto_empresa = txb5.Text;
-
-                        context.fleteros.Add(obj);
-                        context.SaveChanges();
-
-                        #region Guardar log 
-                        try
+                        using (bonisoftEntities context = new bonisoftEntities())
                         {
-                            int id = 1;
-                            fletero fletero = (fletero)context.fleteros.OrderByDescending(p => p.Fletero_ID).FirstOrDefault();
-                            if (fletero != null)
+                            fletero obj = new fletero();
+                            obj.Nombre = txb1.Text;
+                            obj.Comentarios = txb2.Text;
+                            obj.Direccion = txb3.Text;
+                            obj.Telefono = txb4.Text;
+                            obj.Email = txb23.Text;
+                            obj.Nro_cuenta = txb24.Text;
+                            obj.Depto_empresa = txb5.Text;
+
+                            context.fleteros.Add(obj);
+                            context.SaveChanges();
+
+                            #region Guardar log 
+                            try
                             {
-                                id = fletero.Fletero_ID;
+                                int id = 1;
+                                fletero fletero = (fletero)context.fleteros.OrderByDescending(p => p.Fletero_ID).FirstOrDefault();
+                                if (fletero != null)
+                                {
+                                    id = fletero.Fletero_ID;
+                                }
+
+                                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                                string username = HttpContext.Current.Session["UserName"].ToString();
+                                Global_Objects.Logs.AddUserLog("Agrega fletero", fletero.GetType().Name + ": " + id, userID1, username);
                             }
+                            catch (Exception ex)
+                            {
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                            }
+                            #endregion
 
-                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                            string username = HttpContext.Current.Session["UserName"].ToString();
-                            Global_Objects.Logs.AddUserLog("Agrega fletero", fletero.GetType().Name + ": " + id, userID1, username);
+                            lblMessage.Text = "Agregado correctamente.";
+                            BindGrid();
                         }
-                        catch (Exception ex)
-                        {
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
-                        }
-                        #endregion
-
-                        lblMessage.Text = "Agregado correctamente.";
-                        BindGrid();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "alert('Por favor ingrese el Nombre');", true);
                     }
                 }
             }

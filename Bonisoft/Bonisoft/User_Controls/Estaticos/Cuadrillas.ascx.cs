@@ -112,43 +112,51 @@ namespace Bonisoft.User_Controls
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
                 if (txb1 != null && txb2 != null && txb3 != null && txb4 != null)
                 {
-                    using (bonisoftEntities context = new bonisoftEntities())
+                    if (!string.IsNullOrWhiteSpace(txb1.Text))
                     {
-                        cuadrilla_descarga obj = new cuadrilla_descarga();
-                        obj.Nombre = txb1.Text;
-                        obj.Comentarios = txb2.Text;
-                        obj.Direccion = txb3.Text;
-                        obj.Telefono = txb4.Text;
-
-                        context.cuadrilla_descarga.Add(obj);
-                        context.SaveChanges();
-
-                        #region Guardar log 
-                        try
+                        using (bonisoftEntities context = new bonisoftEntities())
                         {
-                            int id = 1;
-                            cuadrilla_descarga cuadrilla_descarga = (cuadrilla_descarga)context.cuadrilla_descarga.OrderByDescending(p => p.Cuadrilla_descarga_ID).FirstOrDefault();
-                            if (cuadrilla_descarga != null)
+                            cuadrilla_descarga obj = new cuadrilla_descarga();
+                            obj.Nombre = txb1.Text;
+                            obj.Comentarios = txb2.Text;
+                            obj.Direccion = txb3.Text;
+                            obj.Telefono = txb4.Text;
+
+                            context.cuadrilla_descarga.Add(obj);
+                            context.SaveChanges();
+
+                            #region Guardar log 
+                            try
                             {
-                                id = cuadrilla_descarga.Cuadrilla_descarga_ID;
+                                int id = 1;
+                                cuadrilla_descarga cuadrilla_descarga = (cuadrilla_descarga)context.cuadrilla_descarga.OrderByDescending(p => p.Cuadrilla_descarga_ID).FirstOrDefault();
+                                if (cuadrilla_descarga != null)
+                                {
+                                    id = cuadrilla_descarga.Cuadrilla_descarga_ID;
+                                }
+
+                                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                                string username = HttpContext.Current.Session["UserName"].ToString();
+                                Global_Objects.Logs.AddUserLog("Agrega descargador", cuadrilla_descarga.GetType().Name + ": " + id, userID1, username);
                             }
+                            catch (Exception ex)
+                            {
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                            }
+                            #endregion
 
-                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                            string username = HttpContext.Current.Session["UserName"].ToString();
-                            Global_Objects.Logs.AddUserLog("Agrega descargador", cuadrilla_descarga.GetType().Name + ": " + id, userID1, username);
+                            lblMessage.Text = "Agregado correctamente.";
+                            BindGrid();
                         }
-                        catch (Exception ex)
-                        {
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
-                        }
-                        #endregion
-
-                        lblMessage.Text = "Agregado correctamente.";
-                        BindGrid();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "alert('Por favor ingrese el Nombre');", true);
                     }
                 }
             }
         }
+
         protected void gridCuadrillas_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gridCuadrillas.EditIndex = e.NewEditIndex;

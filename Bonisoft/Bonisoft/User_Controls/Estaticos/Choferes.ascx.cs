@@ -104,7 +104,6 @@ namespace Bonisoft.User_Controls
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             if (e.CommandName == "InsertNew")
             {
                 GridViewRow row = gridChoferes.FooterRow;
@@ -115,40 +114,46 @@ namespace Bonisoft.User_Controls
                 TextBox txb20 = row.FindControl("txbNew20") as TextBox;
                 if (txb1 != null && txb2 != null && txb4 != null && txb5 != null && txb20 != null)
                 {
-                    using (bonisoftEntities context = new bonisoftEntities())
+                    if (!string.IsNullOrWhiteSpace(txb1.Text))
                     {
-                        chofer obj = new chofer();
-                        obj.Nombre_completo = txb1.Text;
-                        obj.Telefono = txb5.Text;
-                        obj.Empresa = txb2.Text;
-                        obj.Comentarios = txb4.Text;
-                        obj.Depto = txb20.Text;
-
-                        context.choferes.Add(obj);
-                        context.SaveChanges();
-
-                        #region Guardar log 
-                        try
+                        using (bonisoftEntities context = new bonisoftEntities())
                         {
-                            int id = 1;
-                            chofer chofer = (chofer)context.choferes.OrderByDescending(p => p.Chofer_ID).FirstOrDefault();
-                            if (chofer != null)
+                            chofer obj = new chofer();
+                            obj.Nombre_completo = txb1.Text;
+                            obj.Telefono = txb5.Text;
+                            obj.Empresa = txb2.Text;
+                            obj.Comentarios = txb4.Text;
+                            obj.Depto = txb20.Text;
+
+                            context.choferes.Add(obj);
+                            context.SaveChanges();
+
+                            #region Guardar log 
+                            try
                             {
-                                id = chofer.Chofer_ID;
+                                int id = 1;
+                                chofer chofer = (chofer)context.choferes.OrderByDescending(p => p.Chofer_ID).FirstOrDefault();
+                                if (chofer != null)
+                                {
+                                    id = chofer.Chofer_ID;
+                                }
+
+                                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                                string username = HttpContext.Current.Session["UserName"].ToString();
+                                Global_Objects.Logs.AddUserLog("Agrega chofer", chofer.GetType().Name + ": " + id, userID1, username);
                             }
+                            catch (Exception ex)
+                            {
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                            }
+                            #endregion
 
-                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                            string username = HttpContext.Current.Session["UserName"].ToString();
-                            Global_Objects.Logs.AddUserLog("Agrega chofer", chofer.GetType().Name + ": " + id, userID1, username);
+                            lblMessage.Text = "Agregado correctamente.";
+                            BindGrid();
                         }
-                        catch (Exception ex)
-                        {
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
-                        }
-                        #endregion
-
-                        lblMessage.Text = "Agregado correctamente.";
-                        BindGrid();
+                    }
+                    else {
+                        ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "alert('Por favor ingrese el Nombre');", true);
                     }
                 }
             }

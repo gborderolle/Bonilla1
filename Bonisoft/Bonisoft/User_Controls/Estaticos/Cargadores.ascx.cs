@@ -97,11 +97,10 @@ namespace Bonisoft.User_Controls.Estaticos
         protected void gridCargadores_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-
 
             if (e.CommandName == "InsertNew")
             {
@@ -112,39 +111,46 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
                 if (txb1 != null && txb2 != null && txb3 != null && txb4 != null)
                 {
-                    using (bonisoftEntities context = new bonisoftEntities())
+                    if (!string.IsNullOrWhiteSpace(txb1.Text))
                     {
-                        cargador obj = new cargador();
-                        obj.Nombre = txb1.Text;
-                        obj.Comentarios = txb2.Text;
-                        obj.Direccion = txb3.Text;
-                        obj.Telefono = txb4.Text;
-
-                        context.cargadores.Add(obj);
-                        context.SaveChanges();
-
-                        #region Guardar log 
-try 
-{
-                        int id = 1;
-                        cargador cargador = (cargador)context.cargadores.OrderByDescending(p => p.Cargador_ID).FirstOrDefault();
-                        if (cargador != null)
+                        using (bonisoftEntities context = new bonisoftEntities())
                         {
-                            id = cargador.Cargador_ID;
-                        }
+                            cargador obj = new cargador();
+                            obj.Nombre = txb1.Text;
+                            obj.Comentarios = txb2.Text;
+                            obj.Direccion = txb3.Text;
+                            obj.Telefono = txb4.Text;
 
-                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                        string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Agrega cargador", cargador.GetType().Name + ": " + id, userID1, username);
-                        }
-                        catch (Exception ex)
-                        {
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
-                        }
-                        #endregion
+                            context.cargadores.Add(obj);
+                            context.SaveChanges();
 
-                        lblMessage.Text = "Agregado correctamente.";
-                        BindGrid();
+                            #region Guardar log 
+                            try
+                            {
+                                int id = 1;
+                                cargador cargador = (cargador)context.cargadores.OrderByDescending(p => p.Cargador_ID).FirstOrDefault();
+                                if (cargador != null)
+                                {
+                                    id = cargador.Cargador_ID;
+                                }
+
+                                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                                string username = HttpContext.Current.Session["UserName"].ToString();
+                                Global_Objects.Logs.AddUserLog("Agrega cargador", cargador.GetType().Name + ": " + id, userID1, username);
+                            }
+                            catch (Exception ex)
+                            {
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                            }
+                            #endregion
+
+                            lblMessage.Text = "Agregado correctamente.";
+                            BindGrid();
+                        }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "alert('Por favor ingrese el Nombre');", true);
                     }
                 }
             }

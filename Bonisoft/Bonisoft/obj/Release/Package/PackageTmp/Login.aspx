@@ -24,7 +24,7 @@
 
             <div class="row">
                 <div class="col-md-9 modal-header" style="background: #2d3032; border-bottom: 1px solid #2a2c2e;">
-                    <h2 style="color: #ccc;">Bienvenido a Bonisoft software!</h2>
+                    <h2 style="color: #ccc;">¡Bienvenido a Bonisoft software!</h2>
                 </div>
             </div>
 

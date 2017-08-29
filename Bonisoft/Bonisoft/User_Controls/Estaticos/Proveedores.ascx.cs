@@ -102,7 +102,6 @@ namespace Bonisoft.User_Controls
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             if (e.CommandName == "InsertNew")
             {
                 GridViewRow row = gridProveedores.FooterRow;
@@ -118,50 +117,57 @@ namespace Bonisoft.User_Controls
                 if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null &&
                     txb10 != null && txb23 != null && txb24 != null && txb20 != null)
                 {
-                    using (bonisoftEntities context = new bonisoftEntities())
+                    if (!string.IsNullOrWhiteSpace(txb1.Text))
                     {
-                        proveedor obj = new proveedor();
-                        obj.Nombre = txb1.Text;
-                        obj.Razon_social = txb2.Text;
-                        obj.RUT = txb3.Text;
-                        obj.Direccion = txb4.Text;
-                        obj.Telefono = txb5.Text;
-                        obj.Comentarios = txb10.Text;
-                        obj.Email = txb23.Text;
-                        obj.Nro_cuenta = txb24.Text;
-                        obj.Depto = txb20.Text;
-
-                        context.proveedores.Add(obj);
-                        context.SaveChanges();
-
-                        #region Guardar log 
-                        try
+                        using (bonisoftEntities context = new bonisoftEntities())
                         {
-                            int id = 1;
-                            proveedor proveedor = (proveedor)context.proveedores.OrderByDescending(p => p.Proveedor_ID).FirstOrDefault();
-                            if (proveedor != null)
+                            proveedor obj = new proveedor();
+                            obj.Nombre = txb1.Text;
+                            obj.Razon_social = txb2.Text;
+                            obj.RUT = txb3.Text;
+                            obj.Direccion = txb4.Text;
+                            obj.Telefono = txb5.Text;
+                            obj.Comentarios = txb10.Text;
+                            obj.Email = txb23.Text;
+                            obj.Nro_cuenta = txb24.Text;
+                            obj.Depto = txb20.Text;
+
+                            context.proveedores.Add(obj);
+                            context.SaveChanges();
+
+                            #region Guardar log 
+                            try
                             {
-                                id = proveedor.Proveedor_ID;
+                                int id = 1;
+                                proveedor proveedor = (proveedor)context.proveedores.OrderByDescending(p => p.Proveedor_ID).FirstOrDefault();
+                                if (proveedor != null)
+                                {
+                                    id = proveedor.Proveedor_ID;
+                                }
+
+                                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                                string username = HttpContext.Current.Session["UserName"].ToString();
+                                Global_Objects.Logs.AddUserLog("Agrega proveedor", proveedor.GetType().Name + ": " + id, userID1, username);
                             }
+                            catch (Exception ex)
+                            {
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                            }
+                            #endregion
 
-                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                            string username = HttpContext.Current.Session["UserName"].ToString();
-                            Global_Objects.Logs.AddUserLog("Agrega proveedor", proveedor.GetType().Name + ": " + id, userID1, username);
+                            lblMessage.Text = "Agregado correctamente.";
+                            BindGrid();
                         }
-                        catch (Exception ex)
-                        {
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
-                        }
-                        #endregion
-
-                        lblMessage.Text = "Agregado correctamente.";
-                        BindGrid();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "alert('Por favor ingrese el Nombre');", true);
                     }
                 }
-            }
-            else
-            {
-                //BindGrid();
+                else
+                {
+                    //BindGrid();
+                }
             }
         }
 

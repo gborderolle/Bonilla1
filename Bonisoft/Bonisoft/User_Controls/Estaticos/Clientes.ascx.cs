@@ -33,7 +33,7 @@ namespace Bonisoft.User_Controls
             using (bonisoftEntities context = new bonisoftEntities())
             {
                 hdnClientesCount.Value = context.clientes.Where(e => e.EsBarraca == null || e.EsBarraca == false).Count().ToString();
-                if (context.clientes.Count() > 0)
+                if (context.clientes.Where(e => e.EsBarraca == null || e.EsBarraca == false).Count() > 0)
                 {
                     gridClientes.DataSource = context.clientes.Where(e => e.EsBarraca == null || e.EsBarraca == false).ToList();
                     gridClientes.DataBind();
@@ -127,61 +127,68 @@ namespace Bonisoft.User_Controls
                 if (txb1 != null && txb3 != null && txb5 != null && txb13 != null && txb14 != null && txb15 != null &&
                     txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null && txb20 != null)
                 {
-                    using (bonisoftEntities context = new bonisoftEntities())
+                    if (!string.IsNullOrWhiteSpace(txb13.Text))
                     {
-                        cliente obj = new cliente();
-                        obj.Dueno_nombre = txb1.Text;
-                        obj.Encargado_lena_nombre = txb3.Text;
-                        obj.Encargado_pagos_nombre = txb5.Text;
-                        //obj.Supervisor_lena_nombre = txb7.Text;
-                        obj.Supervisor_lena_nombre = string.Empty;
-                        obj.Nombre = txb13.Text;
-                        obj.Razon_social = txb14.Text;
-                        obj.RUT = txb15.Text;
-                        obj.Direccion = txb16.Text;
-                        obj.Telefono = txb17.Text;
-                        obj.Comentarios = txb22.Text;
-                        obj.Email = txb23.Text;
-                        obj.Nro_cuenta = txb24.Text;
-                        obj.Depto = txb20.Text;
-
-                        //
-                        obj.Forma_de_pago_ID = 0;
-                        obj.Dueno_contacto = string.Empty;
-                        obj.Encargado_lena_contacto = string.Empty;
-                        obj.Encargado_pagos_contacto = string.Empty;
-                        obj.Supervisor_lena_contacto = string.Empty;
-                        obj.Periodos_liquidacion = string.Empty;
-                        obj.Fechas_pago = string.Empty;
-                        //
-
-                        obj.EsBarraca = false;
-
-                        context.clientes.Add(obj);
-                        context.SaveChanges();
-
-                        #region Guardar log 
-                        try
+                        using (bonisoftEntities context = new bonisoftEntities())
                         {
-                            int id = 1;
-                            cliente cliente = (cliente)context.clientes.OrderByDescending(p => p.cliente_ID).FirstOrDefault();
-                            if (cliente != null)
+                            cliente obj = new cliente();
+                            obj.Dueno_nombre = txb1.Text;
+                            obj.Encargado_lena_nombre = txb3.Text;
+                            obj.Encargado_pagos_nombre = txb5.Text;
+                            //obj.Supervisor_lena_nombre = txb7.Text;
+                            obj.Supervisor_lena_nombre = string.Empty;
+                            obj.Nombre = txb13.Text;
+                            obj.Razon_social = txb14.Text;
+                            obj.RUT = txb15.Text;
+                            obj.Direccion = txb16.Text;
+                            obj.Telefono = txb17.Text;
+                            obj.Comentarios = txb22.Text;
+                            obj.Email = txb23.Text;
+                            obj.Nro_cuenta = txb24.Text;
+                            obj.Depto = txb20.Text;
+
+                            //
+                            obj.Forma_de_pago_ID = 0;
+                            obj.Dueno_contacto = string.Empty;
+                            obj.Encargado_lena_contacto = string.Empty;
+                            obj.Encargado_pagos_contacto = string.Empty;
+                            obj.Supervisor_lena_contacto = string.Empty;
+                            obj.Periodos_liquidacion = string.Empty;
+                            obj.Fechas_pago = string.Empty;
+                            //
+
+                            obj.EsBarraca = false;
+
+                            context.clientes.Add(obj);
+                            context.SaveChanges();
+
+                            #region Guardar log 
+                            try
                             {
-                                id = cliente.cliente_ID;
+                                int id = 1;
+                                cliente cliente = (cliente)context.clientes.OrderByDescending(p => p.cliente_ID).FirstOrDefault();
+                                if (cliente != null)
+                                {
+                                    id = cliente.cliente_ID;
+                                }
+
+                                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                                string username = HttpContext.Current.Session["UserName"].ToString();
+                                Global_Objects.Logs.AddUserLog("Agrega cliente", cliente.GetType().Name + ": " + id, userID1, username);
                             }
+                            catch (Exception ex)
+                            {
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                            }
+                            #endregion
 
-                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                            string username = HttpContext.Current.Session["UserName"].ToString();
-                            Global_Objects.Logs.AddUserLog("Agrega cliente", cliente.GetType().Name + ": " + id, userID1, username);
+                            lblMessage.Text = "Agregado correctamente.";
+                            BindGrid();
                         }
-                        catch (Exception ex)
-                        {
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
-                        }
-                        #endregion
-
-                        lblMessage.Text = "Agregado correctamente.";
-                        BindGrid();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "alert('Por favor ingrese el Nombre');", true);
                     }
                 }
             }
@@ -326,7 +333,6 @@ namespace Bonisoft.User_Controls
             //Quita el mensaje de información si lo hubiera...
             lblMessage.Text = "";
         }
-
 
     }
 }
