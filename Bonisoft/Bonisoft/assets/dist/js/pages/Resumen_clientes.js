@@ -286,7 +286,7 @@ function ModificarPago_2() {
                                 lblSaldo_final.addClass("label-danger");
                             }
 
-                            show_message_info('OK_Datos');
+                            //show_message_info('OK_Datos');
                             $.modal.close();
 
                             // Actualizar datos
@@ -384,7 +384,7 @@ function IngresarPago() {
                                 lblSaldo_final.addClass("label-danger");
                             }
 
-                            show_message_info('OK_Datos');
+                            //show_message_info('OK_Datos');
                             $.modal.close();
 
                             // Actualizar datos
@@ -497,7 +497,7 @@ function BorrarPago(clienteID) {
                             success: function (response) {
                                 var ok = response.d;
                                 if (ok) {
-                                    show_message_info('OK_PagoBorrado');
+                                    //show_message_info('OK_PagoBorrado');
 
                                     // Actualizar datos
                                     var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
@@ -604,7 +604,7 @@ function ViajeFicticio_2() {
                 var ok = response.d;
                 if (ok !== null && ok) {
 
-                    show_message_info('OK_ViajeFicticio');
+                    //show_message_info('OK_ViajeFicticio');
                     $.modal.close();
 
                     // Actualizar datos

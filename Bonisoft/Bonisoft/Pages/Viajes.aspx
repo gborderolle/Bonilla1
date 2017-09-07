@@ -279,14 +279,11 @@
                                                 <ControlStyle CssClass="btn btn-warning btn-xs glyphicon glyphicon-wrench"></ControlStyle>
                                             </asp:ButtonField>
 
-                                            <%--<a id="lnkViajeDestino" class="btn btn-warning" onclick="FinDelViaje();">FIN del Viaje</a>--%>
-
                                             <asp:TemplateField HeaderText="Archivar" ControlStyle-CssClass="btn btn-success btn-xs">
                                                 <ItemTemplate>
                                                     <a id="btnLlegaViaje" role="button" onclick='<%# "FinDelViaje_2(" +Eval("Viaje_ID") + ");" %>' class="btn btn-success btn-xs glyphicon glyphicon-folder-open" title="Llegó"></a>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-
 
                                             <asp:TemplateField HeaderText="Mod./Borr." ControlStyle-CssClass="btn btn-info btn-xs">
                                                 <ItemTemplate>
@@ -1031,19 +1028,24 @@
         <p style="text-align: left;"></p>
     </div>
 
-
     <div id="dialog_borrarViaje" title="Mensaje Bonisoft" style="height: 0 !important;">
         <p style="text-align: left;"></p>
-
         <div class="form-group">
             <div class="row row-short" style="padding: 10px;">
-
                 <input type="password" id="txbClave" class="form-control" style="width: 90%; display: none;" placeholder="Ingrese su contraseña"
                     name="login-username" />
-                <!--  -->
             </div>
         </div>
+    </div>
 
+        <div id="dialog_archivarViaje" title="Mensaje Bonisoft" style="height: 0 !important;">
+        <p style="text-align: left;"></p>
+        <div class="form-group" style="margin-bottom: 0;">
+            <div class="row row-short" style="padding: 10px;">
+                <input type="text" id="txbNumeroFactura" class="form-control" style="width: 90%;" placeholder="Ingrese el número de factura"
+                    name="login-username" />
+            </div>
+        </div>
     </div>
 
     <!-- popbox: Remove element -->

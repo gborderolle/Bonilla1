@@ -58,5 +58,6 @@ namespace Bonisoft.Models
         public string Mercaderia_Proveedor_Comentarios { get; set; }
         public string Mercaderia_Cliente_Comentarios { get; set; }
         public int Cuadrilla_descarga_ID { get; set; }
+        public string Numero_factura { get; set; }
     }
 }

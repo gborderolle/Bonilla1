@@ -461,7 +461,7 @@ function guardarPesadas(isOrigen) {
                                 }
 
                                 if (ok === "True") {
-                                    show_message_info('OK_Datos');
+                                    //show_message_info('OK_Datos');
                                 } else {
                                     show_message_info('Error_Datos');
                                 }
@@ -574,7 +574,7 @@ function guardarAmbasPesadas() {
                     }
 
                     if (ok === "True") {
-                        show_message_info('OK_Datos');
+                        //show_message_info('OK_Datos');
                     } else {
                         show_message_info('Error_Datos');
                     }
@@ -634,25 +634,25 @@ function NuevoViaje() {
             var ok = response.d;
             if (ok !== null && ok) {
 
-                $('#dialog p').text(hashMessages['OK_ViajeNuevo']);
-                $("#dialog").dialog({
-                    open: {},
-                    resizable: false,
-                    height: 150,
-                    modal: true,
-                    buttons: {
-                        "Aceptar": function () {
-                            //$("#btnUpdateViajesEnCurso").click();
-                            //$(this).dialog("close");
+                //$('#dialog p').text(hashMessages['OK_ViajeNuevo']);
+                //$("#dialog").dialog({
+                //    open: {},
+                //    resizable: false,
+                //    height: 150,
+                //    modal: true,
+                //    buttons: {
+                //        "Aceptar": function () {
+                //            //$("#btnUpdateViajesEnCurso").click();
+                //            //$(this).dialog("close");
 
-                            $('#aTabsViajes_1').click();
-                            $("#dialog").dialog("close");
+                //            $('#aTabsViajes_1').click();
+                //            $("#dialog").dialog("close");
 
-                            $.modal.close();
-                            return true;
-                        }
-                    }
-                });
+                //            $.modal.close();
+                //            return true;
+                //        }
+                //    }
+                //});
 
             } else {
                 show_message_info('Error_Datos');
@@ -1145,25 +1145,27 @@ function ModificarViaje_2() {
                 var ok = response.d;
                 if (ok !== null && ok) {
 
-                    $('#dialog p').text(hashMessages['OK_Datos']);
-                    $("#dialog").dialog({
-                        open: {},
-                        resizable: false,
-                        height: 150,
-                        modal: true,
-                        buttons: {
-                            "Aceptar": function () {
-                                //$("#btnUpdateViajesEnCurso").click();
-                                //$(this).dialog("close");
+                    $('#aTabsViajes_1').click();
 
-                                $('#aTabsViajes_1').click();
-                                $("#dialog").dialog("close");
+                    //$('#dialog p').text(hashMessages['OK_Datos']);
+                    //$("#dialog").dialog({
+                    //    open: {},
+                    //    resizable: false,
+                    //    height: 150,
+                    //    modal: true,
+                    //    buttons: {
+                    //        "Aceptar": function () {
+                    //            //$("#btnUpdateViajesEnCurso").click();
+                    //            //$(this).dialog("close");
 
-                                $.modal.close();
-                                return true;
-                            }
-                        }
-                    });
+                    //            $('#aTabsViajes_1').click();
+                    //            $("#dialog").dialog("close");
+
+                    //            $.modal.close();
+                    //            return true;
+                    //        }
+                    //    }
+                    //});
 
                     //// Actualizar datos
                     //var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
@@ -1185,10 +1187,108 @@ function ModificarViaje_2() {
 }
 
 
+/*
+
+
+
+function confirmar_borrarViajeEnCurso() {
+
+    var btnBorrar = $("#btnBorrar");
+    if (btnBorrar != null) {
+        if (!btnBorrar.hasClass("opened")) {
+            $(".msg-box.popbox").show("highlight", 700);
+            $('#txbConfirmRemoveElement').focus();
+            btnBorrar.addClass("opened");
+
+            // Popup re-location
+            $(".popbox").position({
+                my: "left top",
+                at: "left bottom",
+                of: "#btnBorrar"
+            });
+
+            var btn_width = (parseInt(btnBorrar.css("width"), 10) / 2) + 2;
+
+            // X and Y Axis
+            $("#divPopbox").offset({ left: $("#divPopbox").offset().left + btn_width });
+            $("#divPopbox").offset({ top: $("#divPopbox").offset().top + 5 });
+
+        } else {
+            //$(".msg-box.popbox").hide(200);
+            btnBorrar.removeClass("opened");
+        }
+    }
+
+}
+
+
+
+"Confirmar": function () {
+
+                var userID = globalUserID;
+                if (viaje_ID > 0 && userID != null && userID != "") {
+                    var viajeID_str = viaje_ID.toString();
+
+                    var txbClave = $("#txbClave").val();
+                    if (txbClave != null && txbClave.length > 0) {
+
+                    // Ajax call parameters
+                        console.log("Ajax call: Viajes.aspx/BorrarViajeEnCurso. Params:");
+                        console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
+                        console.log("userID, type: " + type(userID) + ", value: " + userID);
+                        console.log("txbClave, type: " + type(txbClave) + ", value: " + txbClave);
+                    
+                    // Check existen mercaderías
+                    $.ajax({
+                        type: "POST",
+                        url: "Viajes.aspx/BorrarViajeEnCurso",
+                        data: '{viajeID_str: "' + viajeID_str + '", userID: "' + userID + '", clave_str: "' + txbClave + '"}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            var resultado = response.d;
+                            switch (resultado) {
+                                case 0: {
+                                    // Error interno
+                                    show_message_info('Error_Datos');
+                                    break;
+                                }
+                                case 1: {
+                                    // OK
+                                    show_message_info('OK_BorrarViaje');
+
+                                    //$(this).dialog("close");
+                                    $("#dialog_borrarViaje").dialog("close");
+
+                                    // Actualizar tabla
+                                    //$("#btnUpdateViajesEnCurso").click();
+                                    $('#aTabsViajes_1').click();
+
+                                    break;
+                                }
+                                case 2: {
+                                    // Error de clave
+                                    show_message_info('Error_clave');
+                                    break;
+                                }
+                                case 3: {
+                                    // Error de usuario
+                                    show_message_info('Error_usuario');
+                                    break;
+                                }
+                            }
+
+                            $("#txbClave").val("");
+
+                        }, // end success
+
+
+*/
+
 function FinDelViaje_2(viajeID) {
 
-    $('#dialog p').text(hashMessages['Confirmacion']);
-    $("#dialog").dialog({
+    $('#dialog_archivarViaje p').text(hashMessages['Confirmacion']);
+    $("#dialog_archivarViaje").dialog({
         open: {},
         resizable: false,
         height: 150,
@@ -1199,56 +1299,64 @@ function FinDelViaje_2(viajeID) {
                 if (viajeID > 0) {
                     var viajeID_str = viajeID.toString();
 
-                //var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID");
-                //if (hdn_notificaciones_viajeID !== null && hdn_notificaciones_viajeID.val() !== null && hdn_notificaciones_viajeID.val().length > 0) {
-                //    var viajeID_str = hdn_notificaciones_viajeID.val();
+                    var txbNumeroFactura = $("#txbNumeroFactura").val();
+                    if (txbNumeroFactura != null && txbNumeroFactura.length > 0) {
 
-                    // Ajax call parameters
-                    console.log("Ajax call: Viajes.aspx/FinDelViaje. Params:");
-                    console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
 
-                    $.ajax({
-                        type: "POST",
-                        url: "Viajes.aspx/FinDelViaje",
-                        data: '{viajeID_str: "' + viajeID_str + '"}',
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function (response) {
-                            var result = response.d;
-                            switch (result) {
-                                case 0: {
-                                    show_message_info('Error_Datos');
-                                    break;
+                        //var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID");
+                        //if (hdn_notificaciones_viajeID !== null && hdn_notificaciones_viajeID.val() !== null && hdn_notificaciones_viajeID.val().length > 0) {
+                        //    var viajeID_str = hdn_notificaciones_viajeID.val();
+
+                        // Ajax call parameters
+                        console.log("Ajax call: Viajes.aspx/FinDelViaje. Params:");
+                        console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
+                        console.log("txbNumeroFactura, type: " + type(txbNumeroFactura) + ", value: " + txbNumeroFactura);
+
+                        $.ajax({
+                            type: "POST",
+                            url: "Viajes.aspx/FinDelViaje",
+                            data: '{viajeID_str: "' + viajeID_str + '",txbNumeroFactura: "' + txbNumeroFactura + '"}',
+                                contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (response) {
+                                var result = response.d;
+                                switch (result) {
+                                    case 0: {
+                                        show_message_info('Error_Datos');
+                                        break;
+                                    }
+
+                                    case 1: {
+                                        show_message_info('OK_FINViaje');
+                                        setTimeout("location.reload(true);", 1000);
+                                        break;
+                                    }
+
+                                    case 2: {
+                                        show_message_info('Error_DatosMercaderias');
+                                        break;
+                                    }
+
+                                    case 3: {
+                                        show_message_info('Error_DatosPesadas');
+                                        break;
+                                    }
+
+                                    case 4: {
+                                        show_message_info('Error_DatosPrecioVenta');
+                                        break;
+                                    }
                                 }
 
-                                case 1: {
-                                    show_message_info('OK_FINViaje');
-                                    setTimeout("location.reload(true);", 1000);
-                                    break;
-                                }
+                            }, // end success
+                            failure: function (response) {
+                                show_message_info('Error_Datos');
 
-                                case 2: {
-                                    show_message_info('Error_DatosMercaderias');
-                                    break;
-                                }
-
-                                case 3: {
-                                    show_message_info('Error_DatosPesadas');
-                                    break;
-                                }
-
-                                case 4: {
-                                    show_message_info('Error_DatosPrecioVenta');
-                                    break;
-                                }
                             }
-
-                        }, // end success
-                        failure: function (response) {
-                            show_message_info('Error_Datos');
-
-                        }
-                    }); // Ajax
+                        }); // Ajax
+                    } else {
+                        show_message_info('Error_numeroFactura');
+                    }
                 }
 
             },
@@ -1401,7 +1509,7 @@ function GuardarPrecioVenta() {
                                 success: function (response) {
                                     var precio_venta = response.d;
                                     if (precio_venta !== null) {
-                                        show_message_info('OK_Datos');
+                                        //show_message_info('OK_Datos');
 
                                         $("#btnUpdateViajesEnCurso").click();
                                         $.modal.close();

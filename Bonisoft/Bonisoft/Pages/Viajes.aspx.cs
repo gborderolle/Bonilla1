@@ -2470,7 +2470,7 @@ namespace Bonisoft.Pages
         }
 
         [WebMethod]
-        public static int FinDelViaje(string viajeID_str)
+        public static int FinDelViaje(string viajeID_str, string txbNumeroFactura)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -2488,7 +2488,7 @@ namespace Bonisoft.Pages
              * 4- Error_DatosPrecioVenta
              * */
 
-            if (!string.IsNullOrWhiteSpace(viajeID_str))
+            if (!string.IsNullOrWhiteSpace(viajeID_str) && !string.IsNullOrWhiteSpace(txbNumeroFactura))
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
@@ -2532,6 +2532,7 @@ namespace Bonisoft.Pages
                             */
                             if (ok)
                             {
+                                viaje.Numero_factura = txbNumeroFactura;
                                 viaje.EnViaje = false;
 
                                 context.SaveChanges();

@@ -287,7 +287,7 @@ function ModificarPago_2() {
                                 lblSaldo_final.addClass("label-danger");
                             }
 
-                            show_message_info('OK_Datos');
+                            //show_message_info('OK_Datos');
                             $.modal.close();
 
                             // Actualizar datos
@@ -386,7 +386,7 @@ function IngresarPago() {
                                 lblSaldo_final.addClass("label-danger");
                             }
 
-                            show_message_info('OK_Datos');
+                            //show_message_info('OK_Datos');
                             $.modal.close();
 
                             // Actualizar datos

@@ -16,6 +16,7 @@ hashMessages["OK_ViajeNuevo"] = "Viaje agregado.";
 hashMessages["OK_BorrarViaje"] = "Viaje borrado.";
 hashMessages["OK_VolverAEnCurso"] = "El viaje puede volver a editarse en la pestaña En Curso.";
 hashMessages["OK_ViajeFicticio"] = "Saldo anterior actualizado.";
+hashMessages["Error_numeroFactura"] = "El número de factura es incorrecto.";
 
 // Pesadas
 hashMessages["Error_DatosPesadas"] = "Faltan datos de Pesadas.";
