@@ -227,6 +227,8 @@
     <EntitySetMapping Name="viajes">
       <EntityTypeMapping TypeName="bonisoftModel.viaje">
         <MappingFragment StoreEntitySet="viaje">
+          <ScalarProperty Name="Costo_fletero" ColumnName="Costo_fletero" />
+          <ScalarProperty Name="Numero_factura" ColumnName="Numero_factura" />
           <ScalarProperty Name="Cuadrilla_descarga_ID" ColumnName="Cuadrilla_descarga_ID" />
           <ScalarProperty Name="Mercaderia_Cliente_Comentarios" ColumnName="Mercaderia_Cliente_Comentarios" />
           <ScalarProperty Name="Mercaderia_Proveedor_Comentarios" ColumnName="Mercaderia_Proveedor_Comentarios" />

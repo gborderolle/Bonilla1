@@ -1208,7 +1208,7 @@ namespace Bonisoft.Pages
         }
 
         [WebMethod]
-        public static bool IngresarPago(string clienteID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str, bool esPago)
+        public static bool IngresarPago(string clienteID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -1254,23 +1254,13 @@ namespace Bonisoft.Pages
                             Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, monto_str);
                         }
 
-                        if (esPago)
-                        {
-                            obj.Monto = value;
-                        }
-                        else
-                        {
-                            obj.Importe_viaje = value;
-                        }
+                        obj.Monto = value;
 
                         int ddl = 0;
-                        if (esPago)
+                        if (!int.TryParse(ddlFormas, out ddl))
                         {
-                            if (!int.TryParse(ddlFormas, out ddl))
-                            {
-                                ddl = 0;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFormas);
-                            }
+                            ddl = 0;
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFormas);
                         }
                         obj.Forma_de_pago_ID = ddl;
 
@@ -1523,7 +1513,7 @@ namespace Bonisoft.Pages
         }
 
         [WebMethod]
-        public static bool ModificarPago_2(string pagoID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str, bool esPago)
+        public static bool ModificarPago_2(string pagoID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -1560,15 +1550,12 @@ namespace Bonisoft.Pages
                             pago.Fecha_pago = date;
 
                             int ddl = 0;
-                            if (esPago)
-                            {
                                 ddl = pago.Forma_de_pago_ID;
                                 if (!int.TryParse(ddlFormas, out ddl))
                                 {
                                     ddl = pago.Forma_de_pago_ID;
                                     Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFormas);
                                 }
-                            }
                             pago.Forma_de_pago_ID = ddl;
 
                             decimal value = pago.Monto;
@@ -1578,14 +1565,7 @@ namespace Bonisoft.Pages
                                 Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, monto_str);
                             }
 
-                            if (esPago)
-                            {
                                 pago.Monto = value;
-                            }
-                            else
-                            {
-                                pago.Importe_viaje = value;
-                            }
 
                             pago.Comentarios = comentarios_str;
 

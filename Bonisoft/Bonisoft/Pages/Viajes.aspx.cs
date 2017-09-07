@@ -2094,7 +2094,7 @@ namespace Bonisoft.Pages
 
         [WebMethod]
         public static bool GuardarPrecioVenta(string viajeID, string precioFlete_str, string precioDescarga_str, string IVA_str, string mercaderiaValorCliente_str, 
-            string mercaderia_Cliente_Comentarios, string precio_venta_str)
+            string mercaderia_Cliente_Comentarios, string precio_venta_str, string lblPrecioFleteTotal)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -2106,7 +2106,8 @@ namespace Bonisoft.Pages
             using (bonisoftEntities context = new bonisoftEntities())
             {
                 if (!string.IsNullOrWhiteSpace(viajeID) && precioFlete_str != null && precioDescarga_str != null &&
-                    IVA_str != null && mercaderiaValorCliente_str != null && mercaderia_Cliente_Comentarios != null && precio_venta_str != null)
+                    IVA_str != null && mercaderiaValorCliente_str != null && mercaderia_Cliente_Comentarios != null && 
+                    precio_venta_str != null && lblPrecioFleteTotal != null)
                 {
                     int viajeID_value = 0;
                     if (!int.TryParse(viajeID, out viajeID_value))
@@ -2168,6 +2169,16 @@ namespace Bonisoft.Pages
                                     Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, precio_venta_str);
                                 }
                             }
+
+                            decimal precioFleteTotal = 0;
+                            if (!string.IsNullOrWhiteSpace(lblPrecioFleteTotal))
+                            {
+                                if (!decimal.TryParse(lblPrecioFleteTotal, NumberStyles.Number, CultureInfo.InvariantCulture, out precioFleteTotal))
+                                {
+                                    precioFleteTotal = 0;
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, lblPrecioFleteTotal);
+                                }
+                            }
                             if (precio_venta > 0)
                             {
                                 viaje.precio_venta = precio_venta;
@@ -2203,11 +2214,14 @@ namespace Bonisoft.Pages
                                 }
 
                                 // Guardar importe en pagos del fletero
+                                viaje.Costo_fletero = precioFleteTotal;
                                 fletero_pagos fletero_pagos = context.fletero_pagos.FirstOrDefault(v => v.Viaje_ID == viajeID_value);
                                 if (fletero_pagos != null)
                                 {
-                                    fletero_pagos.Importe_viaje = viaje.precio_flete_total; // Precio Venta - Fleteros
+                                    //fletero_pagos.Importe_viaje = viaje.precio_flete_total; // Precio Venta - Fleteros
+                                    fletero_pagos.Importe_viaje = precioFleteTotal;
                                 }
+
 
                                 context.SaveChanges();
 

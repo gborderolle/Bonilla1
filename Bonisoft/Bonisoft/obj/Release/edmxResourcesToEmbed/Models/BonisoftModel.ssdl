@@ -285,6 +285,7 @@
     <Property Name="Mercaderia_Cliente_Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Cuadrilla_descarga_ID" Type="int" Nullable="false" />
     <Property Name="Numero_factura" Type="varchar" MaxLength="20" />
+    <Property Name="Costo_fletero" Type="decimal" Precision="10" Scale="2" />
   </EntityType>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">

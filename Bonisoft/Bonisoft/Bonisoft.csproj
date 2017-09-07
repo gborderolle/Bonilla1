@@ -327,6 +327,7 @@
     <Content Include="assets\dist\img\default-50x50.gif" />
     <Content Include="assets\dist\img\icons.png" />
     <Content Include="assets\dist\img\landing-page.jpg" />
+    <Content Include="assets\dist\img\MX-logo.ico" />
     <Content Include="assets\dist\img\photo1.png" />
     <Content Include="assets\dist\img\photo2.png" />
     <Content Include="assets\dist\img\photo3.jpg" />

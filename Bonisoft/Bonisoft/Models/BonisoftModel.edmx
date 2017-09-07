@@ -290,6 +290,7 @@
           <Property Name="Mercaderia_Cliente_Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Cuadrilla_descarga_ID" Type="int" Nullable="false" />
           <Property Name="Numero_factura" Type="varchar" MaxLength="20" />
+          <Property Name="Costo_fletero" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -685,6 +686,7 @@
           <Property Name="Mercaderia_Cliente_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Cuadrilla_descarga_ID" Type="Int32" Nullable="false" />
           <Property Name="Numero_factura" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Costo_fletero" Type="Decimal" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="cliente_pagos">
           <Key>
@@ -959,6 +961,7 @@
           <EntitySetMapping Name="viajes">
             <EntityTypeMapping TypeName="bonisoftModel.viaje">
               <MappingFragment StoreEntitySet="viaje">
+                <ScalarProperty Name="Costo_fletero" ColumnName="Costo_fletero" />
                 <ScalarProperty Name="Numero_factura" ColumnName="Numero_factura" />
                 <ScalarProperty Name="Cuadrilla_descarga_ID" ColumnName="Cuadrilla_descarga_ID" />
                 <ScalarProperty Name="Mercaderia_Cliente_Comentarios" ColumnName="Mercaderia_Cliente_Comentarios" />
