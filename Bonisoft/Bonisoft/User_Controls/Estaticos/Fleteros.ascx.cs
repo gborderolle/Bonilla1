@@ -156,7 +156,7 @@ namespace Bonisoft.User_Controls.Estaticos
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "alert('Por favor ingrese el Nombre');", true);
+                        ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "alert('Por favor, ingrese el Nombre');", true);
                     }
                 }
             }

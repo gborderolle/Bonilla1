@@ -220,13 +220,13 @@ namespace Bonisoft.Pages {
         protected global::System.Web.UI.WebControls.TextBox modalEdit_txbFecha1;
         
         /// <summary>
-        /// modalEdit_txbFecha2 control.
+        /// modalEdit_txbLugarCarga control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox modalEdit_txbFecha2;
+        protected global::System.Web.UI.WebControls.TextBox modalEdit_txbLugarCarga;
         
         /// <summary>
         /// modalEdit_ddlProveedores control.
@@ -238,13 +238,13 @@ namespace Bonisoft.Pages {
         protected global::System.Web.UI.WebControls.DropDownList modalEdit_ddlProveedores;
         
         /// <summary>
-        /// modalEdit_txbLugarCarga control.
+        /// modalEdit_ddlFleteros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox modalEdit_txbLugarCarga;
+        protected global::System.Web.UI.WebControls.DropDownList modalEdit_ddlFleteros;
         
         /// <summary>
         /// modalEdit_ddlClientes control.
@@ -263,15 +263,6 @@ namespace Bonisoft.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList modalEdit_ddlClientes_Barraca;
-        
-        /// <summary>
-        /// modalEdit_ddlFleteros control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList modalEdit_ddlFleteros;
         
         /// <summary>
         /// modalEdit_ddlCamiones control.

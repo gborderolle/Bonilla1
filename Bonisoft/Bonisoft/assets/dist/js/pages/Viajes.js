@@ -607,7 +607,6 @@ function guardarAmbasPesadas() {
 }
 
 function NuevoViaje() {
-
     var fecha1 = $("#modalAdd_txbFecha1").val();
     var fecha2 = $("#modalAdd_txbFecha2").val();
     var proveedor = $("#modalAdd_ddlProveedores").val();
@@ -620,72 +619,86 @@ function NuevoViaje() {
     var chofer = $("#modalAdd_ddlChoferes").val();
     var comentarios = $("#modalAdd_txbComentarios").val();
 
-    var esBarraca = false;
-    if ($('input[name=add_rad_cliente]:checked').val() == "barraca") {
-        esBarraca = true;
-    }
+    if (((cliente_barraca != null && cliente_barraca.length > 0 && cliente_barraca != "0") || (cliente != null && cliente.length > 0 && cliente != "0")) &&
+        (proveedor != null && proveedor.length > 0 && proveedor != "0") && (fletero != null && fletero.length > 0 && fletero != "0")) {
 
-    // Ajax call parameters
-    console.log("Ajax call: Viajes.aspx/NuevoViaje. Params:");
-    console.log("fecha1, type: " + type(fecha1) + ", value: " + fecha1);
-    console.log("fecha2, type: " + type(fecha2) + ", value: " + fecha2);
-    console.log("proveedor, type: " + type(proveedor) + ", value: " + proveedor);
-    console.log("cliente, type: " + type(cliente) + ", value: " + cliente);
-    console.log("cliente_barraca, type: " + type(cliente_barraca) + ", value: " + cliente_barraca);
-    console.log("cargador, type: " + type(cargador) + ", value: " + cargador);
-    console.log("lugar_carga, type: " + type(lugar_carga) + ", value: " + lugar_carga);
-    console.log("fletero, type: " + type(fletero) + ", value: " + fletero);
-    console.log("camion, type: " + type(camion) + ", value: " + camion);
-    console.log("chofer, type: " + type(chofer) + ", value: " + chofer);
-    console.log("comentarios, type: " + type(comentarios) + ", value: " + comentarios);
-    console.log("esBarraca, type: " + type(esBarraca) + ", value: " + esBarraca);
-
-    $.ajax({
-        type: "POST",
-        url: "Viajes.aspx/NuevoViaje",
-        data: '{fecha1: "' + fecha1 + '",fecha2: "' + fecha2 + '",proveedor: "' + proveedor +
-            '",cliente: "' + cliente + '",cliente_barraca: "' + cliente_barraca + '",cargador: "' + cargador + '",lugar_carga: "' + lugar_carga + '",fletero: "' + fletero +
-            '",camion: "' + camion + '",chofer: "' + chofer + '",comentarios: "' + comentarios + '",esBarraca: "' + esBarraca + '"}',
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (response) {
-            var ok = response.d;
-            if (ok !== null && ok) {
-
-                $('#aTabsViajes_1').click();
-                $.modal.close();
-
-                //$('#dialog p').text(hashMessages['OK_ViajeNuevo']);
-                //$("#dialog").dialog({
-                //    open: {},
-                //    resizable: false,
-                //    height: 150,
-                //    modal: true,
-                //    buttons: {
-                //        "Aceptar": function () {
-                //            //$("#btnUpdateViajesEnCurso").click();
-                //            //$(this).dialog("close");
-
-                //            $('#aTabsViajes_1').click();
-                //            $("#dialog").dialog("close");
-
-                //            $.modal.close();
-                //            return true;
-                //        }
-                //    }
-                //});
-
-            } else {
-                show_message_info('Error_Datos');
-            }
-
-        }, // end success
-        failure: function (response) {
-            show_message_info('Error_Datos');
-
+        var esBarraca = false;
+        if ($('input[name=add_rad_cliente]:checked').val() == "barraca") {
+            esBarraca = true;
         }
-    }); // Ajax
 
+        if (fecha1 == null || fecha1.length == 0) {
+            fecha1 = "";
+        }
+
+        if (fecha2 == null || fecha2.length == 0) {
+            fecha2 = "";
+        }
+
+        // Ajax call parameters
+        console.log("Ajax call: Viajes.aspx/NuevoViaje. Params:");
+        console.log("fecha1, type: " + type(fecha1) + ", value: " + fecha1);
+        console.log("fecha2, type: " + type(fecha2) + ", value: " + fecha2);
+        console.log("proveedor, type: " + type(proveedor) + ", value: " + proveedor);
+        console.log("cliente, type: " + type(cliente) + ", value: " + cliente);
+        console.log("cliente_barraca, type: " + type(cliente_barraca) + ", value: " + cliente_barraca);
+        console.log("cargador, type: " + type(cargador) + ", value: " + cargador);
+        console.log("lugar_carga, type: " + type(lugar_carga) + ", value: " + lugar_carga);
+        console.log("fletero, type: " + type(fletero) + ", value: " + fletero);
+        console.log("camion, type: " + type(camion) + ", value: " + camion);
+        console.log("chofer, type: " + type(chofer) + ", value: " + chofer);
+        console.log("comentarios, type: " + type(comentarios) + ", value: " + comentarios);
+        console.log("esBarraca, type: " + type(esBarraca) + ", value: " + esBarraca);
+
+        $.ajax({
+            type: "POST",
+            url: "Viajes.aspx/NuevoViaje",
+            data: '{fecha1: "' + fecha1 + '",fecha2: "' + fecha2 + '",proveedor: "' + proveedor +
+                '",cliente: "' + cliente + '",cliente_barraca: "' + cliente_barraca + '",cargador: "' + cargador + '",lugar_carga: "' + lugar_carga + '",fletero: "' + fletero +
+                '",camion: "' + camion + '",chofer: "' + chofer + '",comentarios: "' + comentarios + '",esBarraca: "' + esBarraca + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                var ok = response.d;
+                if (ok !== null && ok) {
+
+                    $('#aTabsViajes_1').click();
+                    $.modal.close();
+
+                    //$('#dialog p').text(hashMessages['OK_ViajeNuevo']);
+                    //$("#dialog").dialog({
+                    //    open: {},
+                    //    resizable: false,
+                    //    height: 150,
+                    //    modal: true,
+                    //    buttons: {
+                    //        "Aceptar": function () {
+                    //            //$("#btnUpdateViajesEnCurso").click();
+                    //            //$(this).dialog("close");
+
+                    //            $('#aTabsViajes_1').click();
+                    //            $("#dialog").dialog("close");
+
+                    //            $.modal.close();
+                    //            return true;
+                    //        }
+                    //    }
+                    //});
+
+                } else {
+                    show_message_info('Error_Datos');
+                }
+
+            }, // end success
+            failure: function (response) {
+                show_message_info('Error_Datos');
+
+            }
+        }); // Ajax
+    }
+    else {
+        alert("Por favor, complete los campos en rojo.");
+    }
 }
 
 function DoCustomPost() {
@@ -1137,6 +1150,14 @@ function ModificarViaje_2() {
         var esBarraca = false;
         if ($('input[name=edit_rad_cliente]:checked').val() == "barraca") {
             esBarraca = true;
+        }
+
+        if (fecha1 == null || fecha1.length == 0) {
+            fecha1 = "";
+        }
+
+        if (fecha2 == null || fecha2.length == 0) {
+            fecha2 = "";
         }
 
         // Ajax call parameters

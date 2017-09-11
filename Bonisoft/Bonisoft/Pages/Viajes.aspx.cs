@@ -84,7 +84,7 @@ namespace Bonisoft.Pages
                         if (viaje != null)
                         {
                             string txbFecha1 = hdn_modalEdit_txbFecha1.Value;
-                            string txbFecha2 = hdn_modalEdit_txbFecha2.Value;
+                            //string txbFecha2 = hdn_modalEdit_txbFecha2.Value;
                             string ddlProveedores = hdn_modalEdit_ddlProveedores.Value;
                             string ddlClientes = hdn_modalEdit_ddlClientes.Value;
                             string ddlClientes_Barraca = hdn_modalEdit_ddlClientes_Barraca.Value;
@@ -95,7 +95,7 @@ namespace Bonisoft.Pages
                             string ddlChoferes = hdn_modalEdit_ddlChoferes.Value;
                             string txbComentarios = hdn_modalEdit_txbComentarios.Value;
 
-                            if (txbFecha1 != null && txbFecha2 != null && ddlProveedores != null && ddlClientes != null && ddlClientes_Barraca != null && ddlCargadores != null && txbLugarCarga != null &&
+                            if (txbFecha1 != null && ddlProveedores != null && ddlClientes != null && ddlClientes_Barraca != null && ddlCargadores != null && txbLugarCarga != null &&
                                 ddlFleteros != null && ddlCamiones != null && ddlChoferes != null && txbComentarios != null)
                             {
                                 DateTime date1 = viaje.Fecha_partida;
@@ -109,16 +109,16 @@ namespace Bonisoft.Pages
                                 }
                                 viaje.Fecha_partida = date1;
 
-                                DateTime date2 = viaje.Fecha_llegada;
-                                if (!string.IsNullOrWhiteSpace(txbFecha2))
-                                {
-                                    if (!DateTime.TryParseExact(txbFecha2, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
-                                    {
-                                        date2 = viaje.Fecha_llegada;
-                                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txbFecha2);
-                                    }
-                                }
-                                viaje.Fecha_llegada = date2;
+                                //DateTime date2 = viaje.Fecha_llegada;
+                                //if (!string.IsNullOrWhiteSpace(txbFecha2))
+                                //{
+                                //    if (!DateTime.TryParseExact(txbFecha2, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
+                                //    {
+                                //        date2 = viaje.Fecha_llegada;
+                                //        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txbFecha2);
+                                //    }
+                                //}
+                                //viaje.Fecha_llegada = date2;
 
                                 #region DDL logic
 
@@ -1334,7 +1334,7 @@ namespace Bonisoft.Pages
                                 string fecha_2 = viaje.Fecha_llegada.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
 
                                 modalEdit_txbFecha1.Text = fecha_1;
-                                modalEdit_txbFecha2.Text = fecha_2;
+                                //modalEdit_txbFecha2.Text = fecha_2;
                                 modalEdit_txbLugarCarga.Text = viaje.Carga;
                                 modalEdit_txbComentarios.Text = viaje.Comentarios;
 
@@ -2919,23 +2919,23 @@ namespace Bonisoft.Pages
             {
                 viaje new_viaje = new viaje();
 
-                DateTime date1 = DateTime.MinValue;
+                DateTime date1 = DateTime.Now;
                 if (!string.IsNullOrWhiteSpace(fecha1))
                 {
                     if (!DateTime.TryParseExact(fecha1, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                     {
-                        date1 = DateTime.MinValue;
+                        date1 = DateTime.Now;
                         Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha1);
                     }
                 }
                 new_viaje.Fecha_partida = date1;
 
-                DateTime date2 = DateTime.MinValue;
+                DateTime date2 = DateTime.Now;
                 if (!string.IsNullOrWhiteSpace(fecha2))
                 {
                     if (!DateTime.TryParseExact(fecha2, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
                     {
-                        date2 = DateTime.MinValue;
+                        date2 = DateTime.Now;
                         Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha2);
                     }
                 }
