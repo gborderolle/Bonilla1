@@ -131,7 +131,7 @@
 
                                             <div class="col-md-6 pull-right">
                                                 <div style="margin-top: 10px;" class="pull-right">
-                                                    <a id="btnAddFicticioModal" role="button" onclick='ViajeFicticio_1();' class="btn btn-sm btn-info">Saldo anterior</a>
+                                                    <%--<a id="btnAddFicticioModal" role="button" onclick='ViajeFicticio_1();' class="btn btn-sm btn-info">Saldo anterior</a>--%>
                                                     <a href="#addPagoModal" rel="modal:open" onclick='setupMonthPicker();' class="btn btn-sm btn-info">Ingresar pago</a>
                                                     <asp:Button ID="btnExport" runat="server" Text="Exportar excel" CssClass="btn btn-sm btn-info btn-export" OnClick="ExportToExcel" />
                                                 </div>

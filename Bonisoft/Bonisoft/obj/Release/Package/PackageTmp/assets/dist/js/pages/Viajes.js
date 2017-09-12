@@ -147,24 +147,49 @@ function bindEvents() {
     $("#txb_pesada2Peso_neto").keyup(function () {
         $("#notif_Mercaderia1").text(numberWithCommas(this.value));
         $("#notif_Flete1").text(numberWithCommas(this.value));
+        calcularPrecioVenta();
     });
 
     $("#notif_Flete1").text($("#txb_pesada2Peso_neto").val());
     $("#txb_pesada1Peso_neto").keyup(function () {
         $("#lblPesoNetoOrigen").text(numberWithCommas(this.value));
+        calcularCostoFletero();
     });
 
-    // Calcular precio fletero dinámicamente
+    // Calcular precio fletero dinamicamente
     $("#txbPrecioFleteKilo").keyup(function () {
-        var txbPrecioFleteKilo_str = this.value;
-        var txbPrecioFleteKilo = TryParseFloat(txbPrecioFleteKilo_str, 0);
-        var lblPesoNetoOrigen_str = $("#lblPesoNetoOrigen").text();
-        var lblPesoNetoOrigen = TryParseFloat(lblPesoNetoOrigen_str, 0);
+        calcularCostoFletero();
+    });
 
-        if (txbPrecioFleteKilo > 0 && lblPesoNetoOrigen > 0) {
-            var lblPrecioFleteTotal = txbPrecioFleteKilo * lblPesoNetoOrigen;
-            $("#lblPrecioFleteTotal").text(lblPrecioFleteTotal);
+    function calcularCostoFletero() {
+        var txbPrecioFleteKilo_str = $("#txbPrecioFleteKilo").val();;
+        var lblPesoNetoOrigen_str = $("#lblPesoNetoOrigen").text();
+        if (txbPrecioFleteKilo_str != null && lblPesoNetoOrigen_str) {
+            var txbPrecioFleteKilo = TryParseFloat(txbPrecioFleteKilo_str, 0);
+            var lblPesoNetoOrigen = TryParseFloat(lblPesoNetoOrigen_str, 0);
+
+            if (txbPrecioFleteKilo >= 0 && lblPesoNetoOrigen >= 0) {
+                var lblPrecioFleteTotal = txbPrecioFleteKilo * lblPesoNetoOrigen;
+                $("#lblPrecioFleteTotal").text(lblPrecioFleteTotal);
+            }
         }
+    }
+
+    // Calcular calcularPrecioVenta dinamicamente
+    $("#txbMercaderiaValorCliente").keyup(function () {
+        calcularPrecioVenta();
+    });
+
+    $("#notif_Flete2").keyup(function () {
+        calcularPrecioVenta();
+    });
+    
+    $("#notif_Flete3").keyup(function () {
+        calcularPrecioVenta();
+    });
+
+    $("#notif_Venta2").keyup(function () {
+        calcularPrecioVenta();
     });
 
     // Hacer cálculo de Venta

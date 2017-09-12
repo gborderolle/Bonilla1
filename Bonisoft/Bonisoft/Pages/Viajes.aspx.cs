@@ -1969,6 +1969,15 @@ namespace Bonisoft.Pages
                 txb_pesada1Peso_bruto.Text = viaje.Pesada_Origen_peso_bruto.ToString();
                 txb_pesada1Peso_neto.Text = viaje.Pesada_Origen_peso_neto.ToString();
 
+                decimal costo_flete_kilo = 0;
+                if (viaje.Costo_fletero != null)
+                {
+                    decimal d2 = viaje.Costo_fletero ?? 0;
+                    costo_flete_kilo = d2 / viaje.Pesada_Origen_peso_neto;
+                }
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Cargar_PrecioFleteTotal", "<script type='text/javascript'>$('#lblPrecioFleteTotal').text(" + viaje.Costo_fletero.ToString() + "); $('#lblPesoNetoOrigen').text(" + viaje.Pesada_Origen_peso_neto.ToString() + ");</script>", false);
+                txbPrecioFleteKilo.Text = costo_flete_kilo.ToString();
+
                 // Hidden Fields
                 hdn_modalNotificaciones_pesadas1_txbLugar.Value = viaje.Pesada_Origen_lugar;
                 hdn_modalNotificaciones_pesadas1_txbFecha.Value = viaje.Pesada_Origen_fecha.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
