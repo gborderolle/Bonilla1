@@ -416,10 +416,10 @@
                     <table class="table">
                         <tr>
                             <td>Día de pago en el mes filtrado: 
-                            <asp:TextBox ID="add_txbFecha" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control datepicker" MaxLength="30" DataFormatString="{0:dd}" TabIndex="1"></asp:TextBox>
-                                <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="addToday(1)">
+                            <asp:TextBox ID="add_txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:dd}" TabIndex="1"></asp:TextBox>
+                                <%--<button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="addToday(1)">
                                     <i class="fa fa-calendar-check-o" title="Hoy"></i>
-                                </button>
+                                </button>--%>
                             </td>
                         </tr>
                         <tr>
@@ -467,10 +467,10 @@
                     <table class="table">
                         <tr>
                             <td>Día de pago en el mes filtrado: 
-                            <asp:TextBox ID="edit_txbFecha" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control datepicker" MaxLength="30" DataFormatString="{0:dd}" TabIndex="5"></asp:TextBox>
-                                <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="addToday(2)">
+                            <asp:TextBox ID="edit_txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:dd}" TabIndex="5"></asp:TextBox>
+                                <%--<button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="addToday(2)">
                                     <i class="fa fa-calendar-check-o" title="Hoy"></i>
-                                </button>
+                                </button>--%>
                             </td>
                         </tr>
                         <tr>

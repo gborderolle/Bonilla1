@@ -249,6 +249,8 @@ function ModificarPago_2() {
             var txbMonto = $("#edit_txbMonto").val();
             var txbComentarios = $("#edit_txbComentarios").val();
 
+            if (txbFecha != "") {
+
             // Ajax call parameters
             console.log("Ajax call: Resumen_clientes.aspx/ModificarPago_2. Params:");
             console.log("pagoID_str, type: " + type(pagoID_str) + ", value: " + pagoID_str);
@@ -306,6 +308,9 @@ function ModificarPago_2() {
 
                 }
             }); // Ajax
+        } else {
+            show_message_info('Error_FechaPago');
+        }
         }
     }
 }

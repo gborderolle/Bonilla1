@@ -251,64 +251,68 @@ function ModificarPago_2() {
             var txbMonto = $("#edit_txbMonto").val();
             var txbComentarios = $("#edit_txbComentarios").val();
 
-            // Ajax call parameters
-            console.log("Ajax call: Resumen_fleteros.aspx/ModificarPago_2. Params:");
-            console.log("pagoID_str, type: " + type(pagoID_str) + ", value: " + pagoID_str);
-            console.log("txbFecha, type: " + type(txbFecha) + ", value: " + txbFecha);
-            console.log("ddlFormas, type: " + type(ddlFormas) + ", value: " + ddlFormas);
-            console.log("txbMonto, type: " + type(txbMonto) + ", value: " + txbMonto);
-            console.log("txbComentarios, type: " + type(txbComentarios) + ", value: " + txbComentarios);
+            if (txbFecha != "") {
 
-            $.ajax({
-                type: "POST",
-                url: "Resumen_fleteros.aspx/ModificarPago_2",
-                data: '{pagoID_str: "' + pagoID_str + '",fecha_str: "' + txbFecha + '",ddlFormas: "' + ddlFormas + '",monto_str: "' + txbMonto + '",comentarios_str: "' + txbComentarios + '"}',
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    var ok = response.d;
-                    if (ok !== null && ok) {
+                // Ajax call parameters
+                console.log("Ajax call: Resumen_fleteros.aspx/ModificarPago_2. Params:");
+                console.log("pagoID_str, type: " + type(pagoID_str) + ", value: " + pagoID_str);
+                console.log("txbFecha, type: " + type(txbFecha) + ", value: " + txbFecha);
+                console.log("ddlFormas, type: " + type(ddlFormas) + ", value: " + ddlFormas);
+                console.log("txbMonto, type: " + type(txbMonto) + ", value: " + txbMonto);
+                console.log("txbComentarios, type: " + type(txbComentarios) + ", value: " + txbComentarios);
 
-                        var lblSaldo_final = $("#lblSaldo_final");
-                        if (lblSaldo_final !== null) {
+                $.ajax({
+                    type: "POST",
+                    url: "Resumen_fleteros.aspx/ModificarPago_2",
+                    data: '{pagoID_str: "' + pagoID_str + '",fecha_str: "' + txbFecha + '",ddlFormas: "' + ddlFormas + '",monto_str: "' + txbMonto + '",comentarios_str: "' + txbComentarios + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        var ok = response.d;
+                        if (ok !== null && ok) {
 
-                            var saldo_final_str = lblSaldo_final.text();
-                            var saldo_final = TryParseFloat(saldo_final_str, 0);
+                            var lblSaldo_final = $("#lblSaldo_final");
+                            if (lblSaldo_final !== null) {
 
-                            var monto = TryParseFloat(txbMonto, 0);
-                            saldo_final -= monto;
+                                var saldo_final_str = lblSaldo_final.text();
+                                var saldo_final = TryParseFloat(saldo_final_str, 0);
 
-                            lblSaldo_final.text(numberWithCommas(saldo_final_str));
+                                var monto = TryParseFloat(txbMonto, 0);
+                                saldo_final -= monto;
 
-                            if (saldo_final <= 0) {
-                                lblSaldo_final.removeClass("label-danger");
-                                lblSaldo_final.addClass("label-success");
-                            } else {
-                                lblSaldo_final.removeClass("label-success");
-                                lblSaldo_final.addClass("label-danger");
+                                lblSaldo_final.text(numberWithCommas(saldo_final_str));
+
+                                if (saldo_final <= 0) {
+                                    lblSaldo_final.removeClass("label-danger");
+                                    lblSaldo_final.addClass("label-success");
+                                } else {
+                                    lblSaldo_final.removeClass("label-success");
+                                    lblSaldo_final.addClass("label-danger");
+                                }
+
+                                //show_message_info('OK_Datos');
+                                $.modal.close();
+
+                                // Actualizar datos
+                                var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
+                                if (selected_row !== null) {
+                                    selected_row.click();
+                                }
                             }
 
-                            //show_message_info('OK_Datos');
-                            $.modal.close();
-
-                            // Actualizar datos
-                            var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
-                            if (selected_row !== null) {
-                                selected_row.click();
-                            }
+                        } else {
+                            show_message_info('Error_Datos');
                         }
 
-                    } else {
+                    }, // end success
+                    failure: function (response) {
                         show_message_info('Error_Datos');
+
                     }
-
-                }, // end success
-                failure: function (response) {
-                    show_message_info('Error_Datos');
-
-                }
-            }); // Ajax
-
+                }); // Ajax
+            } else {
+                show_message_info('Error_FechaPago');
+            }
         }
     }
 }
