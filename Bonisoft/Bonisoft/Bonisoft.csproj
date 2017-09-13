@@ -275,6 +275,7 @@
     <Content Include="assets\dist\css\jquery-ui.css" />
     <Content Include="assets\dist\css\pages\Logs.css" />
     <Content Include="assets\dist\css\pages\Modal_styles.css" />
+    <Content Include="assets\dist\css\pages\Resumen.css" />
     <Content Include="assets\dist\css\pages\Resumen_barracas.css" />
     <Content Include="assets\dist\css\pages\Resumen_clientes.css" />
     <Content Include="assets\dist\css\pages\Resumen_fleteros.css" />

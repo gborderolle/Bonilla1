@@ -21,14 +21,20 @@ Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args
 });
 
 function setupMonthPicker() {
-
     // Fecha de pago customización
     $('#add_txbFecha').datepicker({
-        changeMonth: false,
-        changeYear: false,
+        //changeMonth: false,
+        //changeYear: false,
         showButtonPanel: false,
-        dateFormat: 'dd'
+        dateFormat: 'dd-mm-yy'
     });
+
+    // setup date format
+    var d = new Date();
+    var n = d.getMonth() + 1;
+    var y = d.getFullYear();
+
+    $('#add_txbFecha').datepicker("setDate", new Date(d.getFullYear(), $("#hdn_txbMonthpicker").val()-1, d.getDate()));
 }
 
 function initVariables() {
@@ -160,7 +166,7 @@ function actualizarSaldos() {
                         var saldo_final = TryParseFloat(saldo_final_str, 0);
                         var saldo_inicial = TryParseFloat(saldo_inicial_str, 0);
 
-                        saldo_final = saldo_inicial + saldo_final;
+                        //saldo_final = saldo_inicial + saldo_final;
                         saldo_final = saldo_final.toFixed(2); // decimal
                         saldo_inicial = saldo_inicial.toFixed(2); // decimal
 
@@ -314,86 +320,87 @@ function IngresarPago() {
         var txbMonto = $("#add_txbMonto").val();
         var txbComentarios = $("#add_txbComentarios").val();
         
-        // setup date format
-        var d = new Date();
-        var n = d.getMonth() + 1;
-        var y = d.getFullYear();
+        //// setup date format
+        //var d = new Date();
+        //var n = d.getMonth() + 1;
+        //var y = d.getFullYear();
 
-        var txbMonthpicker = $('#txbMonthpicker').MonthPicker('GetSelectedMonth');
-        if (isNaN(txbMonthpicker)) {
-            txbMonthpicker = n;
-        }
+        //var txbMonthpicker = $('#txbMonthpicker').MonthPicker('GetSelectedMonth');
+        //if (isNaN(txbMonthpicker)) {
+        //    txbMonthpicker = n;
+        //}
 
-        var txbYearpicker = $('#txbMonthpicker').MonthPicker('GetSelectedYear');
-        if (isNaN(txbYearpicker)) {
-            txbYearpicker = y;
-        }
-
-        var format_date = new Date(txbYearpicker, txbMonthpicker - 1, txbFecha);
-        txbFecha = moment(format_date).format("DD-MM-YYYY");
+        //var txbYearpicker = $('#txbMonthpicker').MonthPicker('GetSelectedYear');
+        //if (isNaN(txbYearpicker)) {
+        //    txbYearpicker = y;
+        //}
         //txbFecha = txbFecha + "-" + txbMonthpicker + "-" + txbYearpicker;
 
-        if (txbMonto !== null && txbMonto.length > 0) {
-            var monto = TryParseFloat(txbMonto, 0);
+        if (txbFecha != "") {
+            if (txbMonto !== null && txbMonto.length > 0) {
+                var monto = TryParseFloat(txbMonto, 0);
 
-            // Ajax call parameters
-            console.log("Ajax call: Resumen_clientes.aspx/IngresarPago. Params:");
-            console.log("clienteID_str, type: " + type(clienteID_str) + ", value: " + clienteID_str);
-            console.log("txbFecha, type: " + type(txbFecha) + ", value: " + txbFecha);
-            console.log("ddlFormas, type: " + type(ddlFormas) + ", value: " + ddlFormas);
-            console.log("txbMonto, type: " + type(txbMonto) + ", value: " + txbMonto);
-            console.log("txbComentarios, type: " + type(txbComentarios) + ", value: " + txbComentarios);
+                // Ajax call parameters
+                console.log("Ajax call: Resumen_clientes.aspx/IngresarPago. Params:");
+                console.log("clienteID_str, type: " + type(clienteID_str) + ", value: " + clienteID_str);
+                console.log("txbFecha, type: " + type(txbFecha) + ", value: " + txbFecha);
+                console.log("ddlFormas, type: " + type(ddlFormas) + ", value: " + ddlFormas);
+                console.log("txbMonto, type: " + type(txbMonto) + ", value: " + txbMonto);
+                console.log("txbComentarios, type: " + type(txbComentarios) + ", value: " + txbComentarios);
 
-            $.ajax({
-                type: "POST",
-                url: "Resumen_clientes.aspx/IngresarPago",
-                data: '{clienteID_str: "' + clienteID_str + '",fecha_str: "' + txbFecha + '",ddlFormas: "' + ddlFormas + '",monto_str: "' + txbMonto + '",comentarios_str: "' + txbComentarios + '"}',
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    var ok = response.d;
-                    if (ok !== null && ok) {
+                $.ajax({
+                    type: "POST",
+                    url: "Resumen_clientes.aspx/IngresarPago",
+                    data: '{clienteID_str: "' + clienteID_str + '",fecha_str: "' + txbFecha + '",ddlFormas: "' + ddlFormas + '",monto_str: "' + txbMonto + '",comentarios_str: "' + txbComentarios + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        var ok = response.d;
+                        if (ok !== null && ok) {
 
-                        var lblSaldo_final = $("#lblSaldo_final");
-                        if (lblSaldo_final !== null) {
+                            var lblSaldo_final = $("#lblSaldo_final");
+                            if (lblSaldo_final !== null) {
 
-                            var saldo_final_str = lblSaldo_final.text();
-                            var saldo_final = TryParseFloat(saldo_final_str, 0);
+                                var saldo_final_str = lblSaldo_final.text();
+                                var saldo_final = TryParseFloat(saldo_final_str, 0);
 
-                            saldo_final -= monto;
+                                saldo_final -= monto;
 
-                            lblSaldo_final.text(numberWithCommas(saldo_final_str));
+                                lblSaldo_final.text(numberWithCommas(saldo_final_str));
 
-                            if (saldo_final <= 0) {
-                                lblSaldo_final.removeClass("label-danger");
-                                lblSaldo_final.addClass("label-success");
-                            } else {
-                                lblSaldo_final.removeClass("label-success");
-                                lblSaldo_final.addClass("label-danger");
+                                if (saldo_final <= 0) {
+                                    lblSaldo_final.removeClass("label-danger");
+                                    lblSaldo_final.addClass("label-success");
+                                } else {
+                                    lblSaldo_final.removeClass("label-success");
+                                    lblSaldo_final.addClass("label-danger");
+                                }
+
+                                //show_message_info('OK_Datos');
+                                $.modal.close();
+
+                                // Actualizar datos
+                                var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
+                                if (selected_row !== null) {
+                                    selected_row.click();
+                                }
                             }
 
-                            //show_message_info('OK_Datos');
-                            $.modal.close();
-
-                            // Actualizar datos
-                            var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
-                            if (selected_row !== null) {
-                                selected_row.click();
-                            }
+                        } else {
+                            show_message_info('Error_Datos');
                         }
 
-                    } else {
+                    }, // end success
+                    failure: function (response) {
                         show_message_info('Error_Datos');
                     }
+                }); // Ajax
 
-                }, // end success
-                failure: function (response) {
-                    show_message_info('Error_Datos');
-                }
-            }); // Ajax
-
+            } else {
+                show_message_info('Error_DatosPagos');
+            }
         } else {
-            show_message_info('Error_DatosPagos');
+            show_message_info('Error_FechaPago');
         }
     }
 }

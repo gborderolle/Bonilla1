@@ -1166,7 +1166,6 @@ namespace Bonisoft.Pages
                         #region Cálculo saldo inicial
 
                         // Recorro todos los meses hasta el anterior-actual, traigo todos los pagos hasta month_int
-
                         decimal saldo_inicial = 0;
                         var elements_anterior = GetPagosToMonth(context, cliente_ID, month_int - 1, true);
                         if (elements_anterior.Count() > 0)
@@ -1176,14 +1175,9 @@ namespace Bonisoft.Pages
                             saldo_inicial = total_importe - total_pagos1;
                         }
 
-                        //hdn_SaldoAnterior.Value = saldo_inicial.ToString();
-                        //lblSaldo_inicial.Text = String.Format("{0:n}", saldo_inicial);
-
                         #endregion Cálculo saldo inicial
 
                         #region Cálculo saldo final
-
-                        // Saldo final = Importes - Pagos
 
                         decimal total_importes = 0;
                         decimal total_pagos = 0;
@@ -1194,12 +1188,11 @@ namespace Bonisoft.Pages
                             total_pagos = elements.Sum(x => x.Monto);
                         }
 
-                        decimal saldo_final = total_pagos - total_importes; // Al revés de los Clientes
-
+                        // Al revés de los Clientes
+                        decimal saldo_final = total_pagos - (total_importes + saldo_inicial); 
                         ret = saldo_inicial.ToString() + "|" + saldo_final.ToString();
 
                         #endregion Cálculo saldo final
-
                     }
                 }
             }

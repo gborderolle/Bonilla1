@@ -1194,12 +1194,10 @@ namespace Bonisoft.Pages
                             total_pagos = elements.Sum(x => x.Monto);
                         }
 
-                        decimal saldo_final = total_importes - total_pagos;
-
+                        decimal saldo_final = saldo_inicial + total_importes - total_pagos;
                         ret = saldo_inicial.ToString() + "|" + saldo_final.ToString();
 
                         #endregion Cálculo saldo final
-
                     }
                 }
             }

@@ -32,6 +32,7 @@ hashMessages["Error_DatosFletero"] = "Faltan datos del Fletero.";
 
 // Pagos
 hashMessages["Error_DatosPagos"] = "Faltan datos del Pago.";
+hashMessages["Error_FechaPago"] = "Falta la fecha del Pago.";
 hashMessages["OK_PagoBorrado"] = "Pago borrado.";
 
 

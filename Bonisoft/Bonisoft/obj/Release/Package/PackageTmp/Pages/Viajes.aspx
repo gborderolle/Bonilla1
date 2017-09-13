@@ -227,7 +227,7 @@
 
                                 <div style="overflow: auto;">
                                     <asp:GridView ID="gridViajesEnCurso" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
-                                        AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped" PageSize="30"
+                                        AutoGenerateColumns="false" AllowPaging="false" CssClass="table table-hover table-striped" PageSize="30"
                                         DataKeyNames="Viaje_ID"
                                         OnRowDataBound="gridViajesEnCurso_RowDataBound"
                                         OnRowCommand="gridViajesEnCurso_RowCommand"
@@ -900,7 +900,7 @@
                                                 <asp:Label ID="gridViajes_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                                                 <div style="overflow: auto;">
                                                     <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False"
-                                                        ShowFooter="False" CssClass="table table-hover table-striped" PageSize="30" AllowPaging="true"
+                                                        ShowFooter="False" CssClass="table table-hover table-striped" PageSize="30" AllowPaging="false"
                                                         DataKeyNames="Viaje_ID"
                                                         OnRowCommand="gridViajes_RowCommand"
                                                         OnRowCancelingEdit="gridViajes_RowCancelingEdit"

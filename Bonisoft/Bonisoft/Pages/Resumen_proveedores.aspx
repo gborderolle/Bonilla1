@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/assets/dist/css/MonthPicker.css" />
 
     <!-- PAGE CSS -->
+    <link rel="stylesheet" href="/assets/dist/css/pages/Resumen.css" />
     <link rel="stylesheet" href="/assets/dist/css/pages/Resumen_proveedores.css" />
     <link rel="stylesheet" href="/assets/dist/css/pages/Modal_styles.css" />
 
@@ -43,14 +44,14 @@
         <div class="box-header with-border" style="padding-bottom: 0;">
 
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-xs-12 col-sm-12 col-md-9">
                     <h1 style="font-size: 24px;">Resumen de proveedores</h1>
                 </div>
             </div>
 
             <div class="row panel panel-default" style="margin-top: 10px; padding-top: 10px;">
 
-                <div class="col-md-3">
+                <div class="col-xs-12 col-sm-12 col-md-3 pull-left">
 
                     <div style="text-align: center">
 
@@ -58,7 +59,7 @@
                             <ContentTemplate>
 
                                 <div class="row" style="margin-bottom: 10px;">
-                                    <div class="col-md-7 pull-right">
+                                    <div class="col-xs-12 col-sm-12 col-md-7 pull-right">
                                         <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
                                             <div class="input-group ">
                                                 <input type="text" id="txbSearchClientes" name="q" class="form-control" placeholder="Buscar...">
@@ -74,7 +75,7 @@
 
                                 <asp:Label ID="gridClientes_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                                 <asp:GridView ID="gridClientes" runat="server" ClientIDMode="Static" HorizontalAlign="Left"
-                                    AutoGenerateColumns="false" CssClass="table table-hover table-striped" AllowPaging="true" PageSize="30"
+                                    AutoGenerateColumns="false" CssClass="table table-hover table-striped" AllowPaging="false" PageSize="30"
                                     DataKeyNames="Proveedor_ID"
                                     OnRowDataBound="gridClientes_RowDataBound"
                                     OnRowCommand="gridClientes_RowCommand"
@@ -102,7 +103,7 @@
 
                 </div>
 
-                <div class="col-md-9">
+                <div class="col-xs-12 col-sm-12 col-md-9 pull-right">
 
                     <div id="tabsClientes">
                         <ul>
@@ -124,14 +125,13 @@
                                         <asp:HiddenField ID="hdn_SaldoAnterior" runat="server" ClientIDMode="Static" />
 
                                         <div class="row">
-                                            <div class="col-md-4 pull-left">
+                                            <div class="col-sm-12 col-md-4 pull-left">
                                                 <h2>
                                                     <asp:Label Text="[Nombre proveedor]" runat="server" ID="lblClientName_1" /></h2>
                                             </div>
 
-                                            <div class="col-md-6 pull-right">
+                                            <div class="col-sm-12 col-md-6 pull-right">
                                                 <div style="margin-top: 10px;" class="pull-right">
-                                                    <%--<a id="btnAddFicticioModal" role="button" onclick='ViajeFicticio_1();' class="btn btn-sm btn-info">Saldo anterior</a>--%>
                                                     <a href="#addPagoModal" rel="modal:open" onclick='setupMonthPicker();' class="btn btn-sm btn-info">Ingresar pago</a>
                                                     <asp:Button ID="btnExport" runat="server" Text="Exportar excel" CssClass="btn btn-sm btn-info btn-export" OnClick="ExportToExcel" />
                                                 </div>
@@ -139,8 +139,8 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-6 pull-left">
-                                                <div class="input-group">
+                                            <div class="col-sm-12 col-md-6 pull-left">
+                                                <div class="input-group" style="padding:5px;">
                                                     <asp:Button ID="btnSearch_saldos" runat="server" Text="Filtrar" CssClass="btn btn-sm btn-info btnUpdate btn-sm pull-right"
                                                         OnClick="btnSearch_Click_saldos" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" OnClientClick="Javascript:GetMonthFilter()" />
                                                     <input id="txbMonthpicker" type="text" class="month-year-input" style="margin-right: 10px;">
@@ -149,15 +149,17 @@
                                         </div>
 
                                         <div class="row" style="margin-bottom: 10px; margin-right: 0; margin-left: 0;">
-                                            <h3 class="pull-left" title="Saldo acumulado hasta el mes anterior inclusive">Saldo inicial:
+                                            <div class="col-sm-auto">
+                                                <h3 class="pull-left" title="Saldo acumulado hasta el mes anterior inclusive">Saldo inicial:
                                                 <asp:Label ID="lblSaldo_inicial" runat="server" Text="0" class="label label-warning" ClientIDMode="Static"></asp:Label></h3>
-                                            <h3 class="pull-right" title="Saldo final después de pagos (verde nos debe / rojo le debemos)">Saldo final:
+                                                <h3 class="pull-right" title="Saldo final después de pagos (verde nos debe / rojo le debemos)">Saldo final:
                                                 <label id="lblSaldo_final" class="label label-success">0</label></h3>
+                                            </div>
                                         </div>
 
                                         <asp:Label ID="gridPagos_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                                         <asp:GridView ID="gridPagos" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
-                                            AutoGenerateColumns="false" CssClass="table table-hover table-striped" AllowPaging="true" PageSize="30"
+                                            AutoGenerateColumns="false" CssClass="table table-hover table-striped" AllowPaging="false" PageSize="30"
                                             DataKeyNames="Proveedor_pagos_ID"
                                             OnRowDataBound="gridPagos_RowDataBound"
                                             OnRowCommand="gridPagos_RowCommand"
@@ -216,11 +218,11 @@
                                     <ContentTemplate>
 
                                         <div class="row" style="margin-bottom: 10px;">
-                                            <div class="col-md-8 pull-left">
+                                            <div class="col-sm-12 col-md-8 pull-left">
                                                 <h2>Datos de los viajes</h2>
                                             </div>
 
-                                            <div class="col-md-4 pull-right">
+                                            <div class="col-sm-12 col-md-4 pull-right">
                                                 <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
                                                     <div class="input-group ">
                                                         <input type="text" id="txbSearchViajes" name="q" class="form-control" placeholder="Buscar...">
@@ -236,7 +238,7 @@
 
                                         <asp:Label ID="gridViajeslblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                                         <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Left" HeaderStyle-VerticalAlign="Middle"
-                                            AutoGenerateColumns="false" CssClass="table table-hover table-striped" AllowPaging="true" PageSize="30"
+                                            AutoGenerateColumns="false" CssClass="table table-hover table-striped" AllowPaging="false" PageSize="30"
                                             DataKeyNames="Viaje_ID"
                                             OnRowDataBound="gridViajes_RowDataBound"
                                             OnRowCommand="gridViajes_RowCommand"
@@ -300,7 +302,7 @@
                                     <ContentTemplate>
 
                                         <div class="row">
-                                            <div class="col-md-6 pull-left" style="margin-right: 10px; margin-bottom: 10px;">
+                                            <div class="col-sm-12 col-md-6 pull-left" style="margin-right: 10px; margin-bottom: 10px;">
                                                 <div class="input-group">
                                                     <input type="text" id="txbFiltro1" class="form-control datepicker" placeholder="Desde" runat="server" style="width: 120px;">
                                                     <span class="input-group-btn"></span>
@@ -325,7 +327,7 @@
 
                                         <asp:Label ID="gridViajesImprimirlblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                                         <asp:GridView ID="gridViajesImprimir" runat="server" ClientIDMode="Static" HorizontalAlign="Left" HeaderStyle-VerticalAlign="Middle"
-                                            AutoGenerateColumns="false" CssClass="table table-hover table-striped" AllowPaging="true" PageSize="30"
+                                            AutoGenerateColumns="false" CssClass="table table-hover table-striped" AllowPaging="false" PageSize="30"
                                             DataKeyNames="Viaje_ID"
                                             OnRowDataBound="gridViajesImprimir_RowDataBound"
                                             OnRowCommand="gridViajesImprimir_RowCommand"
