@@ -4,14 +4,14 @@ var PAGO_ID_SELECTED;
 var CLIENTE_ID_SELECTED;
 
 $(document).ready(function () {
-   initVariables();
-   bindEvents();
+    initVariables();
+    bindEvents();
 
     // Seleccionar primer cliente
     var first = $("#gridClientes tbody tr").first();
     if (first != null) {
         first.click();
-    }   
+    }
 });
 
 // attach the event binding function to every partial update

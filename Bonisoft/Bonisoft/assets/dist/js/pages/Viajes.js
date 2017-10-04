@@ -9,13 +9,12 @@ var VIAJE_ID_SELECTED;
 /**** Extras variables ****/
 
 $(document).ready(function () {
-
     $('.popbox').popbox();
-
     bindEvents();
+    weird_functions();
+});
 
-    //loadClickRemoveButton_event();
-
+function weird_functions() {
     (function ($, window, document) {
         var panelSelector = '[data-perform="panel-collapse"]';
 
@@ -73,9 +72,8 @@ $(document).ready(function () {
                 }).remove();
             }
         });
-    }(jQuery, window, document));   
-
-});
+    }(jQuery, window, document));
+}
 
 
 // attach the event binding function to every partial update
@@ -606,16 +604,6 @@ function guardarAmbasPesadas() {
                     var ok = resultado_2[0];
                     var precio_compra_str = resultado_2[1];
 
-                    if (precio_compra_str !== null) {
-                        var precio_compra = TryParseFloat(precio_compra_str, 0);
-                        if (precio_compra > 0) {
-                            //var notif_lblPrecioCompra = $("label[id*='notif_lblPrecioCompra']");
-                            //if (notif_lblPrecioCompra !== null) {
-                            //    notif_lblPrecioCompra.text(precio_compra);
-                            //}
-                        }
-                    }
-
                     if (ok === "True") {
                         //show_message_info('OK_Datos');
                     } else {
@@ -1128,13 +1116,17 @@ function ModificarViaje_1(viajeID) {
                         $(".modalEdit_ddlChoferes").val(chofer).trigger("liszt:updated");
 
                         if (esBarraca != "1") {
+                            // Cliente particular
                             $('#editModal_rad_cliente_1').prop("checked", true);
-                            $('.modalEdit_ddlClientes_Barraca').val('').prop('disabled', true).trigger('liszt: updated');
-                            $('.modalEdit_ddlClientes').val('').prop('disabled', false).trigger('liszt: updated');
+                            $(".modalEdit_ddlClientes").val(cliente).trigger("liszt:updated");
+                            //$('.modalEdit_ddlClientes_Barraca').val('').prop('disabled', true).trigger('liszt: updated');
+                            //$('.modalEdit_ddlClientes').val('').prop('disabled', false).trigger('liszt: updated');
                         } else {
+                            // Cliente barraca
                             $('#editModal_rad_cliente_2').prop("checked", true);
-                            $('.modalEdit_ddlClientes_Barraca').val('').prop('disabled', false).trigger('liszt: updated');
-                            $('.modalEdit_ddlClientes').val('').prop('disabled', true).trigger('liszt: updated');
+                            $(".modalEdit_ddlClientes_Barraca").val(cliente).trigger("liszt:updated");
+                            //$('.modalEdit_ddlClientes_Barraca').val('').prop('disabled', false).trigger('liszt: updated');
+                            //$('.modalEdit_ddlClientes').val('').prop('disabled', true).trigger('liszt: updated');
                         }
                         $(".chzn-select").trigger("liszt:updated");
 
@@ -1213,32 +1205,7 @@ function ModificarViaje_2() {
                 if (ok !== null && ok) {
 
                     $('#aTabsViajes_1').click();
-
-                    //$('#dialog p').text(hashMessages['OK_Datos']);
-                    //$("#dialog").dialog({
-                    //    open: {},
-                    //    resizable: false,
-                    //    height: 150,
-                    //    modal: true,
-                    //    buttons: {
-                    //        "Aceptar": function () {
-                    //            //$("#btnUpdateViajesEnCurso").click();
-                    //            //$(this).dialog("close");
-
-                    //            $('#aTabsViajes_1').click();
-                    //            $("#dialog").dialog("close");
-
-                    //            $.modal.close();
-                    //            return true;
-                    //        }
-                    //    }
-                    //});
-
-                    //// Actualizar datos
-                    //var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
-                    //if (selected_row !== null) {
-                    //    selected_row.click();
-                    //}
+                    $.modal.close();
 
                 } else {
                     show_message_info('Error_Datos');
@@ -1428,8 +1395,11 @@ function FinDelViaje_2(viajeID) {
 
             },
             "Cancelar": function () {
-                //$(this).dialog("close");
-                $("#dialog").dialog("close");
+                try {
+                    $(this).dialog("close");
+                } catch (e) {
+                    $("#dialog").dialog("close");
+                }
                 return false;
             }
         }

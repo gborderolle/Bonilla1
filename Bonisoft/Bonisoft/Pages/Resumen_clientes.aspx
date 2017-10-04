@@ -12,9 +12,6 @@
     <link rel="stylesheet" href="/assets/dist/css/pages/Resumen_clientes.css" />
     <link rel="stylesheet" href="/assets/dist/css/pages/Modal_styles.css" />
 
-    <style type="text/css">
-    </style>
-
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
@@ -29,15 +26,6 @@
     <!-- PAGE JS -->
     <script type="text/javascript" src="/assets/dist/js/AuxiliarFunctions.js"></script>
     <script type="text/javascript" src="/assets/dist/js/pages/Resumen_clientes.js"></script>
-
-    <script type="text/javascript">
-
-        $(function () {
-
-        });
-
-    </script>
-
 
 </asp:Content>
 
@@ -548,7 +536,5 @@
         setTimeout(loadInputDDL, 1000);
         //setTimeout(loadDDLEvents, 1100);
     </script>
-
-
 
 </asp:Content>

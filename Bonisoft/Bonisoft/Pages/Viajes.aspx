@@ -18,6 +18,12 @@
         }
     </style>
 
+    <script type="text/javascript">
+        $(function () {
+            loadInputDDL();
+        });
+    </script>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
@@ -437,11 +443,11 @@
                                         <div id="editModal_rad_cliente">
                                             <div class="radio">
                                                 <label>
-                                                    <input id="editModal_rad_cliente_1" type="radio" name="edit_rad_cliente" checked="checked" value="particular">Cliente Particular</label>
+                                                    <input id="editModal_rad_cliente_1" type="radio" name="edit_rad_cliente" checked="checked" value="particular" disabled="disabled">Cliente Particular</label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input id="editModal_rad_cliente_2" type="radio" name="edit_rad_cliente" value="barraca">Cliente Barraca</label>
+                                                    <input id="editModal_rad_cliente_2" type="radio" name="edit_rad_cliente" value="barraca" disabled="disabled">Cliente Barraca</label>
                                             </div>
                                         </div>
                                         <table class="table">
@@ -453,12 +459,6 @@
                                                         <i class="fa fa-calendar-check-o" title="Hoy"></i>
                                                     </button>
                                                 </td>
-                                                <%--<td>Fecha de llegada (tentativa): 
-                                                <asp:TextBox ID="modalEdit_txbFecha2" DataFormatString="{dd-mm-yyyy}" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" TabIndex="12"></asp:TextBox>
-                                                    <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="addToday(6)">
-                                                        <i class="fa fa-calendar-check-o" title="Hoy"></i>
-                                                    </button>
-                                                </td>--%>
                                                 <td>Lugar de carga: 
                                                 <asp:TextBox ID="modalEdit_txbLugarCarga" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="16" />
                                                 </td>
@@ -466,14 +466,14 @@
                                             <tr>
                                                 <td>
                                                     <div style="color: #ea4040">Proveedor: </div>
-                                                    <asp:DropDownList ID="modalEdit_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select modalEdit_ddlProveedores" TabIndex="13" />
+                                                    <asp:DropDownList ID="modalEdit_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select modalEdit_ddlProveedores" TabIndex="13" Enabled="False" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('proveedor')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </td>
                                                 <td>
                                                     <div style="color: #ea4040">Fletero: </div>
-                                                    <asp:DropDownList ID="modalEdit_ddlFleteros" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select modalEdit_ddlFleteros" TabIndex="17" />
+                                                    <asp:DropDownList ID="modalEdit_ddlFleteros" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select modalEdit_ddlFleteros" TabIndex="17" Enabled="False" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('fletero')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
@@ -482,14 +482,14 @@
                                             <tr>
                                                 <td>
                                                     <div style="color: #ea4040">Cliente particular: </div>
-                                                    <asp:DropDownList ID="modalEdit_ddlClientes" runat="server" ClientIDMode="Static" CssClass="form-control chzn-select modalEdit_ddlClientes" TabIndex="14" />
+                                                    <asp:DropDownList ID="modalEdit_ddlClientes" runat="server" ClientIDMode="Static" CssClass="form-control chzn-select modalEdit_ddlClientes" TabIndex="14" Enabled="False" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cliente')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </td>
                                                 <td>
                                                     <div style="color: #ea4040">Cliente barraca: </div>
-                                                    <asp:DropDownList ID="modalEdit_ddlClientes_Barraca" runat="server" ClientIDMode="Static" CssClass="form-control chzn-select modalEdit_ddlClientes_Barraca" TabIndex="14" />
+                                                    <asp:DropDownList ID="modalEdit_ddlClientes_Barraca" runat="server" ClientIDMode="Static" CssClass="form-control chzn-select modalEdit_ddlClientes_Barraca" TabIndex="14" Enabled="False" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cliente_barraca')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
@@ -1107,7 +1107,7 @@
         <p style="text-align: left;"></p>
         <div class="form-group" style="margin-bottom: 0;">
             <div class="row row-short" style="padding: 10px;">
-                <input type="text" id="txbNumeroFactura" class="form-control" style="width: 90%; display: none;" placeholder="Ingrese el número de factura"
+                <input type="text" id="txbNumeroFactura" class="form-control" style="width: 90%;" placeholder="Ingrese el número de factura"
                     name="login-username" />
             </div>
         </div>

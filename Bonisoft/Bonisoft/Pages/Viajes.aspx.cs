@@ -2102,7 +2102,7 @@ namespace Bonisoft.Pages
         #region Web methods
 
         [WebMethod]
-        public static bool GuardarPrecioVenta(string viajeID, string precioFlete_str, string precioDescarga_str, string IVA_str, string mercaderiaValorCliente_str, 
+        public static bool GuardarPrecioVenta(string viajeID, string precioFlete_str, string precioDescarga_str, string IVA_str, string mercaderiaValorCliente_str,
             string mercaderia_Cliente_Comentarios, string precio_venta_str, string lblPrecioFleteTotal)
         {
             // Logger variables
@@ -2115,7 +2115,7 @@ namespace Bonisoft.Pages
             using (bonisoftEntities context = new bonisoftEntities())
             {
                 if (!string.IsNullOrWhiteSpace(viajeID) && precioFlete_str != null && precioDescarga_str != null &&
-                    IVA_str != null && mercaderiaValorCliente_str != null && mercaderia_Cliente_Comentarios != null && 
+                    IVA_str != null && mercaderiaValorCliente_str != null && mercaderia_Cliente_Comentarios != null &&
                     precio_venta_str != null && lblPrecioFleteTotal != null)
                 {
                     int viajeID_value = 0;
@@ -2230,7 +2230,6 @@ namespace Bonisoft.Pages
                                     //fletero_pagos.Importe_viaje = viaje.precio_flete_total; // Precio Venta - Fleteros
                                     fletero_pagos.Importe_viaje = precioFleteTotal;
                                 }
-
 
                                 context.SaveChanges();
 
@@ -2835,38 +2834,38 @@ namespace Bonisoft.Pages
 
                             #region DDL logic
 
-                            int ddl = viaje.Proveedor_ID;
-                            if (!int.TryParse(proveedor, out ddl))
-                            {
-                                ddl = viaje.Proveedor_ID;
-                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, proveedor);
-                            }
-                            viaje.Proveedor_ID = ddl;
+                            int ddl = 0; //viaje.Proveedor_ID;
+                            //if (!int.TryParse(proveedor, out ddl))
+                            //{
+                            //    ddl = viaje.Proveedor_ID;
+                            //    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, proveedor);
+                            //}
+                            //viaje.Proveedor_ID = ddl;
 
-                            cliente = esBarraca ? cliente_barraca : cliente;
-                            ddl = viaje.Cliente_ID;
-                            if (!int.TryParse(cliente, out ddl))
-                            {
-                                ddl = viaje.Cliente_ID;
-                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, cliente);
-                            }
-                            viaje.Cliente_ID = ddl;
+                            //cliente = esBarraca ? cliente_barraca : cliente;
+                            //ddl = viaje.Cliente_ID;
+                            //if (!int.TryParse(cliente, out ddl))
+                            //{
+                            //    ddl = viaje.Cliente_ID;
+                            //    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, cliente);
+                            //}
+                            //viaje.Cliente_ID = ddl;
 
-                            ddl = viaje.Cuadrilla_descarga_ID;
+                            //ddl = viaje.Fletero_ID;
+                            //if (!int.TryParse(fletero, out ddl))
+                            //{
+                            //    ddl = viaje.Fletero_ID;
+                            //    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, fletero);
+                            //}
+                            //viaje.Fletero_ID = ddl;
+
+                            ddl = viaje.Cuadrilla_descarga_ID; // Changadores
                             if (!int.TryParse(cargador, out ddl))
                             {
                                 ddl = viaje.Cuadrilla_descarga_ID;
                                 Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, cargador);
                             }
                             viaje.Cuadrilla_descarga_ID = ddl;
-
-                            ddl = viaje.Fletero_ID;
-                            if (!int.TryParse(fletero, out ddl))
-                            {
-                                ddl = viaje.Fletero_ID;
-                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, fletero);
-                            }
-                            viaje.Fletero_ID = ddl;
 
                             ddl = viaje.Camion_ID;
                             if (!int.TryParse(camion, out ddl))

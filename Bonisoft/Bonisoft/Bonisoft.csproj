@@ -237,9 +237,13 @@
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="assets\bootstrap\js\npm.js" />
     <Content Include="assets\dist\css\bootstrap.mindf2b.css" />
+    <Content Include="assets\dist\css\BootstrapXL.css" />
     <Content Include="assets\dist\css\chosen-sprite%402x.png" />
     <Content Include="assets\dist\css\chosen-sprite.png" />
     <Content Include="assets\dist\css\chosen.css" />
+    <Content Include="assets\dist\css\images\bg_hr.png" />
+    <Content Include="assets\dist\css\images\blacktocat.png" />
+    <Content Include="assets\dist\css\images\icon.gif" />
     <Content Include="assets\dist\css\images\loginProcess_error.png" />
     <Content Include="assets\dist\css\images\loginProcess_loading.gif" />
     <Content Include="assets\dist\css\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
@@ -268,6 +272,7 @@
     <Content Include="assets\dist\css\pages\images\bg.gif" />
     <Content Include="assets\dist\css\pages\images\desc.gif" />
     <Content Include="assets\dist\css\pages\images\style.css" />
+    <Content Include="assets\dist\css\pages\login-styles.css" />
     <Content Include="assets\dist\css\pages\Login.css" />
     <Content Include="assets\dist\css\pages\Datos.css" />
     <Content Include="assets\dist\css\font-awesome.css" />
@@ -329,6 +334,7 @@
     <Content Include="assets\dist\img\icons.png" />
     <Content Include="assets\dist\img\landing-page.jpg" />
     <Content Include="assets\dist\img\MX-logo.ico" />
+    <Content Include="assets\dist\img\MX-logo.png" />
     <Content Include="assets\dist\img\photo1.png" />
     <Content Include="assets\dist\img\photo2.png" />
     <Content Include="assets\dist\img\photo3.jpg" />
@@ -1228,7 +1234,12 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BonisoftModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Helpers\Scripts\chosen.jquery.js" />
+    <Content Include="Helpers\Scripts\jquery.min.js" />
+    <Content Include="Helpers\Style\chosen.css" />
     <Content Include="landing-page.html" />
+    <Content Include="Login2.aspx" />
+    <Content Include="LoginNEW.aspx" />
     <Content Include="Models\BonisoftModel.edmx.diagram">
       <DependentUpon>BonisoftModel.edmx</DependentUpon>
     </Content>
@@ -1332,7 +1343,7 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Site.Mobile.Master" />
-    <Content Include="Site1.Master" />
+    <Content Include="SiteHome.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1342,11 +1353,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\RouteConfig2.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -1367,6 +1376,20 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login2.aspx.cs">
+      <DependentUpon>Login2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login2.aspx.designer.cs">
+      <DependentUpon>Login2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginNEW.aspx.cs">
+      <DependentUpon>LoginNEW.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginNEW.aspx.designer.cs">
+      <DependentUpon>LoginNEW.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\BonisoftModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -1561,11 +1584,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Site1.Master.cs">
-      <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site1.Master.designer.cs">
-      <DependentUpon>Site1.Master</DependentUpon>
+      <DependentUpon>Site1.Master.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SiteHome.Master.cs">
+      <DependentUpon>SiteHome.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteHome.Master.designer.cs">
+      <DependentUpon>SiteHome.Master</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\Configuracion\Camion_ejes.ascx.cs">
       <DependentUpon>Camion_ejes.ascx</DependentUpon>
@@ -1691,7 +1720,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assets\images\" />
     <Folder Include="User_Controls\Dinamicos\" />
   </ItemGroup>
   <ItemGroup>

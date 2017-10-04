@@ -1,19 +1,21 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Bonisoft.SiteMaster" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html lang="es-Es" xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xml:lang="es-Es" xmlns="http://www.w3.org/1999/xhtml">
 
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Bonisoft</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title><%: Page.Title %> - Bonisoft software</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
+        <%: Scripts.Render("~/bundles/jquery") %>
     </asp:PlaceHolder>
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link rel="icon" href="assets/dist/img/MX-logo.ico" />
-    <%--<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />--%>
 
     <!-- STYLES -->
 
@@ -26,13 +28,12 @@
 
     <!-- Font Awesome -->
     <%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">--%>
-    <link rel="stylesheet" href="/assets/dist/css/font-awesome.css"/>
+    <link rel="stylesheet" href="/assets/dist/css/font-awesome.css" />
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
     <!-- Jquery-UI -->
     <%--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">--%>
-    <link rel="stylesheet" href="/assets/dist/css/jquery-ui.css"/>
-
+    <link rel="stylesheet" href="/assets/dist/css/jquery-ui.css" />
 
     <script type="text/javascript">
 
@@ -69,7 +70,7 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-        <script type="text/javascript" language="javascript">
+        <script type="text/javascript">
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
             function EndRequestHandler(sender, args) {
                 if (args.get_error() != undefined) {
@@ -100,7 +101,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="#">Bonisoft</a>
+                    <a class="navbar-brand" runat="server" href="#">Bonisoft software</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -120,14 +121,6 @@
                                 <li><a runat="server" href="~/Login">Salir</a></li>
                             </ul>
                         </AnonymousTemplate>
-                        <%-- <LoggedInTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-                                <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                </li>
-                            </ul>
-                        </LoggedInTemplate>--%>
                     </asp:LoginView>
                 </div>
             </div>
@@ -137,7 +130,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Bonisoft - Build: <%=Build_date%></p>
+                <p>&copy; <%: DateTime.Now.Year %> - Bonisoft software- Build: <%=Build_date%></p>
             </footer>
         </div>
     </form>

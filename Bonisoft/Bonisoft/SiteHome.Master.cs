@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Bonisoft_2.Pages
+namespace Bonisoft
 {
-    public partial class A : System.Web.UI.Page
+    public partial class SiteHome : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
