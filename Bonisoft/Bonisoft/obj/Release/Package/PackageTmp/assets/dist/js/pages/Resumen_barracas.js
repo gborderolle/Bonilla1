@@ -325,22 +325,6 @@ function IngresarPago() {
         var txbMonto = $("#add_txbMonto").val();
         var txbComentarios = $("#add_txbComentarios").val();
 
-        //// setup date format
-        //var d = new Date();
-        //var n = d.getMonth() + 1;
-        //var y = d.getFullYear();
-
-        //var txbMonthpicker = $('#txbMonthpicker').MonthPicker('GetSelectedMonth');
-        //if (isNaN(txbMonthpicker)) {
-        //    txbMonthpicker = n;
-        //}
-
-        //var txbYearpicker = $('#txbMonthpicker').MonthPicker('GetSelectedYear');
-        //if (isNaN(txbYearpicker)) {
-        //    txbYearpicker = y;
-        //}
-        //txbFecha = txbFecha + "-" + txbMonthpicker + "-" + txbYearpicker;
-
         if (txbFecha != "") {
             if (txbMonto !== null && txbMonto.length > 0) {
                 var monto = TryParseFloat(txbMonto, 0);

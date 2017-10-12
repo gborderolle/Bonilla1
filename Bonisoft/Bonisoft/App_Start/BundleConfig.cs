@@ -13,33 +13,33 @@ namespace Bonisoft
         public static void RegisterBundles(BundleCollection bundles)
         {
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Scripts/jquery-3.2.1.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Scripts/jquery-3.2.1.js"));
             //bundles.Add(new ScriptBundle("~/Scripts/jquery").Include("~/Scripts/jquery-3.2.1.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/WebFormsJs").Include(
+            //bundles.Add(new ScriptBundle("~/bundles/WebFormsJs").Include(
             //bundles.Add(new ScriptBundle("~/Scripts/WebFormsJs").Include(
-                            "~/Scripts/WebForms/WebForms.js",
-                            "~/Scripts/WebForms/WebUIValidation.js",
-                            "~/Scripts/WebForms/MenuStandards.js",
-                            "~/Scripts/WebForms/Focus.js",
-                            "~/Scripts/WebForms/GridView.js",
-                            "~/Scripts/WebForms/DetailsView.js",
-                            "~/Scripts/WebForms/TreeView.js",
-                            "~/Scripts/WebForms/WebParts.js"));
+            //                "~/Scripts/WebForms/WebForms.js",
+            //                "~/Scripts/WebForms/WebUIValidation.js",
+            //                "~/Scripts/WebForms/MenuStandards.js",
+            //                "~/Scripts/WebForms/Focus.js",
+            //                "~/Scripts/WebForms/GridView.js",
+            //                "~/Scripts/WebForms/DetailsView.js",
+            //                "~/Scripts/WebForms/TreeView.js",
+            //                "~/Scripts/WebForms/WebParts.js"));
 
             // Order is very important for these files to work, they have explicit dependencies
-            bundles.Add(new ScriptBundle("~/bundles/MsAjaxJs").Include(
+            //bundles.Add(new ScriptBundle("~/bundles/MsAjaxJs").Include(
             //bundles.Add(new ScriptBundle("~/Scripts/MsAjaxJs").Include(
-                    "~/Scripts/WebForms/MsAjax/MicrosoftAjax.js",
-                    "~/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js",
-                    "~/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
-                    "~/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js"));
+            //        "~/Scripts/WebForms/MsAjax/MicrosoftAjax.js",
+            //        "~/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js",
+            //        "~/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
+            //        "~/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js"));
 
             // Use the Development version of Modernizr to develop with and learn from. Then, when you’re
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
+            //bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
             //bundles.Add(new ScriptBundle("~/Scripts/modernizr").Include(
-                            "~/Scripts/modernizr-*"));
+                            //"~/Scripts/modernizr-*"));
 
             ScriptManager.ScriptResourceMapping.AddDefinition(
                 "respond",

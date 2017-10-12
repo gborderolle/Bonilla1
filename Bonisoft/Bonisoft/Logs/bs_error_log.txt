@@ -1,0 +1,8 @@
+12-Oct-17 01:48:20: [ln:67] Login: Perform_login() - Excepcion. Haciendo login. ERROR: Cannot open database "bonisoftdb" requested by the login. The login failed.
+Login failed for user 'boniadmin'..
+12-Oct-17 01:48:24: [ln:67] Login: Perform_login() - Excepcion. Haciendo login. ERROR: Cannot open database "bonisoftdb" requested by the login. The login failed.
+Login failed for user 'boniadmin'..
+12-Oct-17 01:49:13: [ln:67] Login: Perform_login() - Excepcion. Haciendo login. ERROR: Cannot open database "bonisoftdb" requested by the login. The login failed.
+Login failed for user 'boniadmin'..
+12-Oct-17 01:51:30: [ln:67] Login: Perform_login() - Excepcion. Haciendo login. ERROR: Cannot open database "bonisoftdb" requested by the login. The login failed.
+Login failed for user 'boniadmin'..

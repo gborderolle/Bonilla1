@@ -10,11 +10,26 @@
 
     <title><%: Page.Title %> - Bonisoft software</title>
 
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
-        <%: Scripts.Render("~/bundles/jquery") %>
-    </asp:PlaceHolder>
     <webopt:BundleReference runat="server" Path="~/Content/css" />
+
+    <script type="text/javascript" src="/assets/dist/js/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="/Scripts/WebForms/WebForms.js"></script>
+    <script type="text/javascript" src="/Scripts/WebForms/WebUIValidation.js"></script>
+    <script type="text/javascript" src="/Scripts/WebForms/MenuStandards.js"></script>
+    <script type="text/javascript" src="/Scripts/WebForms/Focus.js"></script>
+    <script type="text/javascript" src="/Scripts/WebForms/GridView.js"></script>
+    <script type="text/javascript" src="/Scripts/WebForms/DetailsView.js"></script>
+    <script type="text/javascript" src="/Scripts/WebForms/TreeView.js"></script>
+    <script type="text/javascript" src="/Scripts/WebForms/WebParts.js"></script>
+
+    <script type="text/javascript" src="/Scripts/WebForms/MsAjax/MicrosoftAjax.js"></script>
+    <script type="text/javascript" src="/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js"></script>
+    <script type="text/javascript" src="/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js"></script>
+    <script type="text/javascript" src="/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js"></script>
+
+    <script type="text/javascript" src="/Scripts/modernizr.js"></script>
+
     <link rel="icon" href="assets/dist/img/MX-logo.ico" />
 
     <!-- STYLES -->
@@ -25,6 +40,8 @@
             width: 90%;
         }
     </style>
+
+    <%--<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css" />--%>
 
     <!-- Font Awesome -->
     <%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">--%>
@@ -54,10 +71,10 @@
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
-                <asp:ScriptReference Name="MsAjaxBundle" />
-                <asp:ScriptReference Name="jquery" />
+                <%--<asp:ScriptReference Name="MsAjaxBundle" />--%>
+                <%--<asp:ScriptReference Name="jquery" />--%>
                 <asp:ScriptReference Name="bootstrap" />
-                <asp:ScriptReference Name="respond" />
+                <%--<asp:ScriptReference Name="respond" />
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
                 <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
                 <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
@@ -66,7 +83,7 @@
                 <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                <asp:ScriptReference Name="WebFormsBundle" />
+                <asp:ScriptReference Name="WebFormsBundle" />--%>
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>

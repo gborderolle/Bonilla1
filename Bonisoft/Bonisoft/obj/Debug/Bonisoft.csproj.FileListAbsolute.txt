@@ -289,7 +289,6 @@ C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonilla1\Bonisoft\Bonisoft\bin\Microsof
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonilla1\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonilla1\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonilla1\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.OAuth.xml
-C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonilla1\Bonisoft\Bonisoft\obj\Debug\Bonisoft.csprojResolveAssemblyReference.cache
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonilla1\Bonisoft\Bonisoft\obj\Debug\Bonisoft.Properties.Resources.resources
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonilla1\Bonisoft\Bonisoft\obj\Debug\Bonisoft.csproj.GenerateResource.Cache
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonilla1\Bonisoft\Bonisoft\obj\Debug\Bonisoft.dll

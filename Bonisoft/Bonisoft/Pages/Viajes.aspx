@@ -299,7 +299,7 @@
 
                                             <asp:TemplateField HeaderText="Archivar" ControlStyle-CssClass="btn btn-success btn-xs">
                                                 <ItemTemplate>
-                                                    <a id="btnLlegaViaje" role="button" onclick='<%# "FinDelViaje_2(" +Eval("Viaje_ID") + ");" %>' class="btn btn-success btn-xs glyphicon glyphicon-folder-open" title="Llegó"></a>
+                                                    <a id="btnLlegaViaje" role="button" onclick='<%# "FinDelViaje_2(" +Eval("Viaje_ID") + ");" %>' class="btn btn-success btn-xs glyphicon glyphicon-folder-open" title="Archivar"></a>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 

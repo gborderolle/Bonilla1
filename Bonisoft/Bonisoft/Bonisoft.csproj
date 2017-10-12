@@ -232,7 +232,43 @@
     <Content Include="assets\bootstrap.js" />
     <Content Include="assets\bootstrap\css\bootstrap.css" />
     <Content Include="assets\bootstrap\css\bootstrap.min.css" />
+    <Content Include="assets\bootstrap\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\bootstrap\fonts\new_layout\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\bootstrap\img\avatar.png" />
+    <Content Include="assets\bootstrap\img\avatar04.png" />
+    <Content Include="assets\bootstrap\img\avatar2.png" />
+    <Content Include="assets\bootstrap\img\avatar3.png" />
+    <Content Include="assets\bootstrap\img\avatar5.png" />
+    <Content Include="assets\bootstrap\img\boxed-bg.jpg" />
+    <Content Include="assets\bootstrap\img\boxed-bg.png" />
+    <Content Include="assets\bootstrap\img\credit\american-express.png" />
+    <Content Include="assets\bootstrap\img\credit\cirrus.png" />
+    <Content Include="assets\bootstrap\img\credit\mastercard.png" />
+    <Content Include="assets\bootstrap\img\credit\mestro.png" />
+    <Content Include="assets\bootstrap\img\credit\paypal.png" />
+    <Content Include="assets\bootstrap\img\credit\paypal2.png" />
+    <Content Include="assets\bootstrap\img\credit\visa.png" />
+    <Content Include="assets\bootstrap\img\default-50x50.gif" />
+    <Content Include="assets\bootstrap\img\fontawesome-webfont.svg" />
+    <Content Include="assets\bootstrap\img\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\bootstrap\img\icons.png" />
+    <Content Include="assets\bootstrap\img\landing-page.jpg" />
+    <Content Include="assets\bootstrap\img\MX-logo.ico" />
+    <Content Include="assets\bootstrap\img\MX-logo.png" />
+    <Content Include="assets\bootstrap\img\new_layout\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\bootstrap\img\photo1.png" />
+    <Content Include="assets\bootstrap\img\photo2.png" />
+    <Content Include="assets\bootstrap\img\photo3.jpg" />
+    <Content Include="assets\bootstrap\img\photo4.jpg" />
+    <Content Include="assets\bootstrap\img\user1-128x128.jpg" />
+    <Content Include="assets\bootstrap\img\user2-160x160.jpg" />
+    <Content Include="assets\bootstrap\img\user3-128x128.jpg" />
+    <Content Include="assets\bootstrap\img\user4-128x128.jpg" />
+    <Content Include="assets\bootstrap\img\user5-128x128.jpg" />
+    <Content Include="assets\bootstrap\img\user6-128x128.jpg" />
+    <Content Include="assets\bootstrap\img\user7-128x128.jpg" />
+    <Content Include="assets\bootstrap\img\user8-128x128.jpg" />
     <Content Include="assets\bootstrap\js\bootstrap.js" />
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="assets\bootstrap\js\npm.js" />
@@ -407,6 +443,7 @@
     <Content Include="assets\plugins\editableDropDownList\js\jquery.ui.core.js" />
     <Content Include="assets\plugins\editableDropDownList\js\jquery.ui.position.js" />
     <Content Include="assets\plugins\editableDropDownList\js\jquery.ui.widget.js" />
+    <Content Include="ErrorPages\Oops.aspx" />
     <Content Include="ExternalResources\Alert_Messages.js" />
     <Content Include="assets\dist\js\pages\Viajes.js" />
     <Content Include="assets\plugins\bootstrap-slider\bootstrap-slider.js" />
@@ -1247,6 +1284,38 @@
     <Content Include="assets\dist\fonts\new_layout\glyphicons-halflings-regular.ttf" />
     <Content Include="assets\dist\fonts\new_layout\glyphicons-halflings-regular.woff" />
     <Content Include="assets\dist\fonts\new_layout\glyphicons-halflings-regular.woff2" />
+    <Content Include="assets\bootstrap\img\DroidSans-Bold.ttf" />
+    <Content Include="assets\bootstrap\img\DroidSans-webfont.ttf" />
+    <Content Include="assets\bootstrap\img\DroidSans-webfont.woff" />
+    <Content Include="assets\bootstrap\img\DroidSans.ttf" />
+    <Content Include="assets\bootstrap\img\fontawesome-webfont.eot" />
+    <Content Include="assets\bootstrap\img\fontawesome-webfont.ttf" />
+    <Content Include="assets\bootstrap\img\fontawesome-webfont.woff" />
+    <Content Include="assets\bootstrap\img\fontawesome-webfont.woff2" />
+    <Content Include="assets\bootstrap\img\FontAwesome.otf" />
+    <Content Include="assets\bootstrap\img\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\bootstrap\img\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\bootstrap\img\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\bootstrap\img\glyphicons-halflings-regular.woff2" />
+    <Content Include="assets\bootstrap\img\new_layout\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\bootstrap\img\new_layout\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\bootstrap\img\new_layout\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\bootstrap\img\new_layout\glyphicons-halflings-regular.woff2" />
+    <Content Include="assets\bootstrap\img\TradeGothicLTStd-Bd2.otf" />
+    <Content Include="assets\bootstrap\fonts\DroidSans-Bold.ttf" />
+    <Content Include="assets\bootstrap\fonts\DroidSans-webfont.ttf" />
+    <Content Include="assets\bootstrap\fonts\DroidSans-webfont.woff" />
+    <Content Include="assets\bootstrap\fonts\DroidSans.ttf" />
+    <Content Include="assets\bootstrap\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\bootstrap\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\bootstrap\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\bootstrap\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\bootstrap\fonts\FontAwesome.otf" />
+    <Content Include="assets\bootstrap\fonts\new_layout\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\bootstrap\fonts\new_layout\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\bootstrap\fonts\new_layout\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\bootstrap\fonts\new_layout\glyphicons-halflings-regular.woff2" />
+    <Content Include="assets\bootstrap\fonts\TradeGothicLTStd-Bd2.otf" />
     <None Include="Properties\PublishProfiles\bonisoft - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\bonisoft - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\bonisoft.somee.pubxml" />
@@ -1363,6 +1432,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPages\Oops.aspx.cs">
+      <DependentUpon>Oops.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPages\Oops.aspx.designer.cs">
+      <DependentUpon>Oops.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
