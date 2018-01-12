@@ -3346,7 +3346,6 @@ namespace Bonisoft.Pages
             return ID_result;
         }
 
-
         private static string AgregarCargador(string valor) // Cuadrilla
         {
             string ID_result = "0";

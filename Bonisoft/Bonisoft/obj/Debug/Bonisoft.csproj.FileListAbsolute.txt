@@ -293,3 +293,4 @@ C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonilla1\Bonisoft\Bonisoft\obj\Debug\Bo
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonilla1\Bonisoft\Bonisoft\obj\Debug\Bonisoft.csproj.GenerateResource.Cache
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonilla1\Bonisoft\Bonisoft\obj\Debug\Bonisoft.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonilla1\Bonisoft\Bonisoft\obj\Debug\Bonisoft.pdb
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonilla1\Bonisoft\Bonisoft\obj\Debug\Bonisoft.csprojResolveAssemblyReference.cache
