@@ -897,8 +897,16 @@ namespace Bonisoft.Pages
 
         public static List<cliente_pagos> GetPagosByMonth(bonisoftEntities context, int cliente_ID, int month_int, bool include_ficticio = false)
         {
-            DateTime date1 = new DateTime(DateTime.Now.Year, month_int, 1);
+            int current_year = DateTime.Now.Year;
 
+            // Si el mes = 0 (Enero ==> mes = 12)
+            if (month_int == 0)
+            {
+                month_int = 12;
+                current_year = current_year - 1;
+            }
+
+            DateTime date1 = new DateTime(DateTime.Now.Year, month_int, 1);
             int last_day = DateTime.DaysInMonth(DateTime.Now.Year, month_int);
             DateTime date2 = new DateTime(DateTime.Now.Year, month_int, last_day);
 

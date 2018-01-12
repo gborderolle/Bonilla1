@@ -6,3 +6,27 @@ Login failed for user 'boniadmin'..
 Login failed for user 'boniadmin'..
 12-Oct-17 01:51:30: [ln:67] Login: Perform_login() - Excepcion. Haciendo login. ERROR: Cannot open database "bonisoftdb" requested by the login. The login failed.
 Login failed for user 'boniadmin'..
+12-Jan-18 14:14:04: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:14:05: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:14:06: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:14:07: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:14:14: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:24:01: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:24:02: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:24:02: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:25:16: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:25:20: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:25:26: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:25:29: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:27:39: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:29:53: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:30:05: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:33:22: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:33:51: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:33:51: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:34:59: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:35:13: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:35:14: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:38:15: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:42:28: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+12-Jan-18 14:43:45: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
