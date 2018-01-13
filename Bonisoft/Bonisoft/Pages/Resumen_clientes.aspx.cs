@@ -83,11 +83,17 @@ namespace Bonisoft.Pages
 
                 if (cliente_ID > 0)
                 {
-                    string month = hdn_txbMonthpicker.Value;
-                    if (!string.IsNullOrWhiteSpace(month))
+                    string value = hdn_txbMonthpicker.Value;
+                    if (!string.IsNullOrWhiteSpace(value))
                     {
-                        BindGridPagos(cliente_ID, month);
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "btnSearch_Click_saldos", "<script type='text/javascript'>$('#txbMonthpicker').val('0" + month + "/" + DateTime.Now.Year + "'); </script>", false);
+                        string[] words = value.Split('|');
+                        if (words != null && words.Length > 1)
+                        {
+                            string month = words[0];
+                            string year = words[1];
+                            BindGridPagos(cliente_ID, month, year);
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "btnSearch_Click_saldos", "<script type='text/javascript'>$('#txbMonthpicker').val('0" + month + "/" + year + "'); </script>", false);
+                        }
                     }
                 }
             }
@@ -115,10 +121,16 @@ namespace Bonisoft.Pages
 
                 if (cliente_ID > 0)
                 {
-                    string month = hdn_txbMonthpicker.Value;
-                    if (!string.IsNullOrWhiteSpace(month))
+                    string value = hdn_txbMonthpicker.Value;
+                    if (!string.IsNullOrWhiteSpace(value))
                     {
-                        BindGridPagos(cliente_ID, month);
+                        string[] words = value.Split('|');
+                        if (words != null && words.Length > 1)
+                        {
+                            string month = words[0];
+                            string year = words[1];
+                            BindGridPagos(cliente_ID, month, year);
+                        }
                     }
                 }
             }
@@ -812,7 +824,7 @@ namespace Bonisoft.Pages
             }
         }
 
-        private void BindGridPagos(int cliente_ID, string month = "")
+        private void BindGridPagos(int cliente_ID, string month = "", string year = "")
         {
             if (cliente_ID > 0)
             {
@@ -827,7 +839,7 @@ namespace Bonisoft.Pages
                     var elements = context.cliente_pagos.Where(v => v.Cliente_ID == cliente_ID && (v.isFicticio ?? false)).OrderBy(e => e.Fecha_pago).ToList();
 
                     // Filtro por fechas
-                    if (!string.IsNullOrWhiteSpace(month))
+                    if (!string.IsNullOrWhiteSpace(month) && !string.IsNullOrWhiteSpace(year))
                     {
                         int month_int = 0;
                         if (!int.TryParse(month, out month_int))
@@ -835,14 +847,20 @@ namespace Bonisoft.Pages
                             month_int = 0;
                             Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, month);
                         }
-                        if (month_int > 0)
+                        int year_int = 0;
+                        if (!int.TryParse(year, out year_int))
+                        {
+                            year_int = 0;
+                            Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, year);
+                        }
+                        if (month_int > 0 && year_int > 0)
                         {
                             // Obtiene pagos del mes corriente
-                            elements = GetPagosByMonth(context, cliente_ID, month_int);
+                            elements = GetPagosByMonth(context, cliente_ID, month_int, year_int);
 
                             // Obtiene pagos del mes anterior - Saldo Inicial
                             decimal saldo_anterior = 0;
-                            var elements_anterior = GetPagosByMonth(context, cliente_ID, --month_int);
+                            var elements_anterior = GetPagosByMonth(context, cliente_ID, --month_int, year_int);
                             if (elements_anterior.Count() > 0)
                             {
                                 decimal total_importe = elements_anterior.Sum(x => x.Importe_viaje);
@@ -894,20 +912,18 @@ namespace Bonisoft.Pages
             }
         }
 
-        public static List<cliente_pagos> GetPagosByMonth(bonisoftEntities context, int cliente_ID, int month_int, bool include_ficticio = false)
+        public static List<cliente_pagos> GetPagosByMonth(bonisoftEntities context, int cliente_ID, int month_int, int year_int, bool include_ficticio = false)
         {
-            int current_year = DateTime.Now.Year;
-
             // Si el mes = 0 (Enero ==> mes = 12)
             if (month_int == 0)
             {
                 month_int = 12;
-                current_year = current_year - 1;
+                year_int--;
             }
 
-            DateTime date1 = new DateTime(DateTime.Now.Year, month_int, 1);
-            int last_day = DateTime.DaysInMonth(DateTime.Now.Year, month_int);
-            DateTime date2 = new DateTime(DateTime.Now.Year, month_int, last_day);
+            DateTime date1 = new DateTime(year_int, month_int, 1);
+            int last_day = DateTime.DaysInMonth(year_int, month_int);
+            DateTime date2 = new DateTime(year_int, month_int, last_day);
 
             // Excluye ficticios
             var ret = context.cliente_pagos.Where(v => v.Cliente_ID == cliente_ID && (v.Fecha_pago >= date1 && v.Fecha_pago <= date2) && (!v.isFicticio.HasValue)).OrderBy(e => e.Fecha_pago).ToList();
@@ -918,12 +934,21 @@ namespace Bonisoft.Pages
             return ret;
         }
 
-        public static List<cliente_pagos> GetPagosToMonth(bonisoftEntities context, int cliente_ID, int month_int, bool include_ficticio = false)
+        public static List<cliente_pagos> GetPagosToMonth(bonisoftEntities context, int cliente_ID, int month_int, int year_int, bool include_ficticio = false)
         {
-            DateTime date1 = new DateTime(DateTime.Now.Year, 1, 1);
+            // Desde hace 5 años
+            DateTime date1 = new DateTime(DateTime.Now.Year - 5, 1, 1);
 
-            int last_day = DateTime.DaysInMonth(DateTime.Now.Year, month_int);
-            DateTime date2 = new DateTime(DateTime.Now.Year, month_int, last_day);
+            // Si el mes = 0 (Enero ==> mes = 12)
+            if (month_int == 0)
+            {
+                month_int = 12;
+                year_int--;
+            }
+
+            // Hasta el año y mes del filtro 
+            int last_day = DateTime.DaysInMonth(year_int, month_int);
+            DateTime date2 = new DateTime(year_int, month_int, last_day);
 
             // Excluye ficticios
             var ret = context.cliente_pagos.Where(v => v.Cliente_ID == cliente_ID && (v.Fecha_pago >= date1 && v.Fecha_pago <= date2) && (!v.isFicticio.HasValue)).OrderBy(e => e.Fecha_pago).ToList();
@@ -1142,7 +1167,7 @@ namespace Bonisoft.Pages
         #region Web methods
 
         [WebMethod]
-        public static string Update_Saldos(string clienteID_str, string month_str)
+        public static string Update_Saldos(string clienteID_str, string month_str, string year_str)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -1151,7 +1176,7 @@ namespace Bonisoft.Pages
             string methodName = stackFrame.GetMethod().Name;
 
             string ret = string.Empty;
-            if (!string.IsNullOrWhiteSpace(clienteID_str) && !string.IsNullOrWhiteSpace(month_str))
+            if (!string.IsNullOrWhiteSpace(clienteID_str) && !string.IsNullOrWhiteSpace(month_str) && !string.IsNullOrWhiteSpace(year_str))
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
@@ -1169,14 +1194,21 @@ namespace Bonisoft.Pages
                         Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, month_str);
                     }
 
-                    if (cliente_ID > 0 && month_int > 0)
+                    int year_int = 0;
+                    if (!int.TryParse(year_str, out year_int))
+                    {
+                        year_int = 0;
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, year_str);
+                    }
+
+                    if (cliente_ID > 0 && month_int > 0 && year_int > 0)
                     {
                         #region Cálculo saldo inicial
 
                         // Recorro todos los meses hasta el anterior-actual, traigo todos los pagos hasta month_int
 
                         decimal saldo_inicial = 0;
-                        var elements_anterior = GetPagosToMonth(context, cliente_ID, month_int - 1, true);
+                        var elements_anterior = GetPagosToMonth(context, cliente_ID, month_int - 1, year_int, true);
                         if (elements_anterior.Count() > 0)
                         {
                             decimal total_importe = elements_anterior.Sum(x => x.Importe_viaje);
@@ -1195,7 +1227,7 @@ namespace Bonisoft.Pages
 
                         decimal total_importes = 0;
                         decimal total_pagos = 0;
-                        var elements = GetPagosByMonth(context, cliente_ID, month_int);
+                        var elements = GetPagosByMonth(context, cliente_ID, month_int, year_int);
                         if (elements.ToList().Count > 0)
                         {
                             total_importes = elements.Sum(x => x.Importe_viaje);
@@ -1668,160 +1700,109 @@ namespace Bonisoft.Pages
             return ret;
         }
 
-        [WebMethod]
-        public static string ViajeFicticio_1(string clienteID_str, string month_str)
-        {
-            // Logger variables
-            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
-            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-            string methodName = stackFrame.GetMethod().Name;
+        //[WebMethod]
+        //public static bool ViajeFicticio_2(string saldo_str, string comentarios, string month_str, string clienteID_str)
+        //{
+        //    // Logger variables
+        //    System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+        //    System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+        //    string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+        //    string methodName = stackFrame.GetMethod().Name;
 
-            string ret = string.Empty;
-            if (!string.IsNullOrWhiteSpace(clienteID_str) && !string.IsNullOrWhiteSpace(month_str))
-            {
-                using (bonisoftEntities context = new bonisoftEntities())
-                {
-                    int clienteID = 0;
-                    if (!int.TryParse(clienteID_str, out clienteID))
-                    {
-                        clienteID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
-                    }
+        //    bool ret = false;
+        //    if (!string.IsNullOrWhiteSpace(clienteID_str) && !string.IsNullOrWhiteSpace(month_str))
+        //    {
+        //        using (bonisoftEntities context = new bonisoftEntities())
+        //        {
+        //            int clienteID = 0;
+        //            if (!int.TryParse(clienteID_str, out clienteID))
+        //            {
+        //                clienteID = 0;
+        //                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
+        //            }
 
-                    int month_int = 0;
-                    if (!int.TryParse(month_str, out month_int))
-                    {
-                        month_int = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, month_str);
-                    }
+        //            int month_int = 0;
+        //            if (!int.TryParse(month_str, out month_int))
+        //            {
+        //                month_int = 0;
+        //                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, month_str);
+        //            }
 
-                    if (clienteID > 0 && month_int > 0)
-                    {
-                        cliente cliente = (cliente)context.clientes.FirstOrDefault(v => v.cliente_ID == clienteID);
-                        if (cliente != null)
-                        {
-                            string saldo = "0";
-                            string comentarios = string.Empty;
+        //            if (clienteID > 0 && month_int > 0)
+        //            {
+        //                // Mes anterior para saldo anterior
+        //                month_int--;
 
-                            // Busca un pago ficticio en el mes anterior
-                            cliente_pagos cliente_pagos = GetPagosByMonth(context, clienteID, month_int - 1, true).FirstOrDefault();
-                            if (cliente_pagos != null)
-                            {
-                                saldo = cliente_pagos.Importe_viaje.ToString();
-                                comentarios = cliente_pagos.Comentarios;
-                            }
-                            ret = saldo + "|" + comentarios;
-                        }
-                    }
-                }
-            }
-            return ret;
-        }
+        //                // Get month
+        //                DateTime date1 = new DateTime(DateTime.Now.Year, month_int, 1);
+        //                int last_day = DateTime.DaysInMonth(DateTime.Now.Year, month_int);
+        //                DateTime date2 = new DateTime(DateTime.Now.Year, month_int, last_day);
 
-        [WebMethod]
-        public static bool ViajeFicticio_2(string saldo_str, string comentarios, string month_str, string clienteID_str)
-        {
-            // Logger variables
-            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
-            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-            string methodName = stackFrame.GetMethod().Name;
+        //                bool isNew = false;
+        //                decimal saldo = 0;
 
-            bool ret = false;
-            if (!string.IsNullOrWhiteSpace(clienteID_str) && !string.IsNullOrWhiteSpace(month_str))
-            {
-                using (bonisoftEntities context = new bonisoftEntities())
-                {
-                    int clienteID = 0;
-                    if (!int.TryParse(clienteID_str, out clienteID))
-                    {
-                        clienteID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
-                    }
+        //                // Busca un pago ficticio en el mes anterior
+        //                cliente_pagos cliente_pagos = GetPagosByMonth(context, clienteID, month_int, true).FirstOrDefault();
+        //                if (cliente_pagos != null)
+        //                {
+        //                    saldo = cliente_pagos.Importe_viaje; //
+        //                }
+        //                else
+        //                {
+        //                    isNew = true;
 
-                    int month_int = 0;
-                    if (!int.TryParse(month_str, out month_int))
-                    {
-                        month_int = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, month_str);
-                    }
+        //                    cliente_pagos = new cliente_pagos();
+        //                    cliente_pagos.isFicticio = true;
+        //                    cliente_pagos.Cliente_ID = clienteID;
+        //                }
+        //                if (!string.IsNullOrWhiteSpace(saldo_str))
+        //                {
+        //                    if (!decimal.TryParse(saldo_str, NumberStyles.Number, CultureInfo.InvariantCulture, out saldo))
+        //                    {
+        //                        saldo = 0;
+        //                        Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, saldo_str);
+        //                    }
+        //                }
+        //                cliente_pagos.Importe_viaje = saldo; //
+        //                cliente_pagos.Comentarios = comentarios;
 
-                    if (clienteID > 0 && month_int > 0)
-                    {
-                        // Mes anterior para saldo anterior
-                        month_int--;
+        //                if (isNew)
+        //                {
+        //                    cliente_pagos.Fecha_pago = date1;
+        //                    cliente_pagos.Fecha_registro = DateTime.Now;
+        //                    cliente_pagos.Forma_de_pago_ID = 0;
+        //                    cliente_pagos.Monto = 0;
+        //                    cliente_pagos.Viaje_ID = 0;
 
-                        // Get month
-                        DateTime date1 = new DateTime(DateTime.Now.Year, month_int, 1);
-                        int last_day = DateTime.DaysInMonth(DateTime.Now.Year, month_int);
-                        DateTime date2 = new DateTime(DateTime.Now.Year, month_int, last_day);
+        //                    context.cliente_pagos.Add(cliente_pagos);
+        //                }
+        //                context.SaveChanges();
 
-                        bool isNew = false;
-                        decimal saldo = 0;
+        //                #region Guardar log
+        //                try
+        //                {
+        //                    int id = 1;
+        //                    if (cliente_pagos != null)
+        //                    {
+        //                        id = cliente_pagos.Cliente_pagos_ID;
+        //                    }
 
-                        // Busca un pago ficticio en el mes anterior
-                        cliente_pagos cliente_pagos = GetPagosByMonth(context, clienteID, month_int, true).FirstOrDefault();
-                        if (cliente_pagos != null)
-                        {
-                            saldo = cliente_pagos.Importe_viaje; //
-                        }
-                        else
-                        {
-                            isNew = true;
+        //                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+        //                    string username = HttpContext.Current.Session["UserName"].ToString();
+        //                    Logs.AddUserLog("Modifica cliente_pagos ficticio", cliente_pagos.GetType().Name + ": " + cliente_pagos.Cliente_pagos_ID, userID1, username);
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+        //                }
+        //                #endregion
 
-                            cliente_pagos = new cliente_pagos();
-                            cliente_pagos.isFicticio = true;
-                            cliente_pagos.Cliente_ID = clienteID;
-                        }
-                        if (!string.IsNullOrWhiteSpace(saldo_str))
-                        {
-                            if (!decimal.TryParse(saldo_str, NumberStyles.Number, CultureInfo.InvariantCulture, out saldo))
-                            {
-                                saldo = 0;
-                                Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, saldo_str);
-                            }
-                        }
-                        cliente_pagos.Importe_viaje = saldo; //
-                        cliente_pagos.Comentarios = comentarios;
-
-                        if (isNew)
-                        {
-                            cliente_pagos.Fecha_pago = date1;
-                            cliente_pagos.Fecha_registro = DateTime.Now;
-                            cliente_pagos.Forma_de_pago_ID = 0;
-                            cliente_pagos.Monto = 0;
-                            cliente_pagos.Viaje_ID = 0;
-
-                            context.cliente_pagos.Add(cliente_pagos);
-                        }
-                        context.SaveChanges();
-
-                        #region Guardar log
-                        try
-                        {
-                            int id = 1;
-                            if (cliente_pagos != null)
-                            {
-                                id = cliente_pagos.Cliente_pagos_ID;
-                            }
-
-                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                            string username = HttpContext.Current.Session["UserName"].ToString();
-                            Logs.AddUserLog("Modifica cliente_pagos ficticio", cliente_pagos.GetType().Name + ": " + cliente_pagos.Cliente_pagos_ID, userID1, username);
-                        }
-                        catch (Exception ex)
-                        {
-                            Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
-                        }
-                        #endregion
-
-                        ret = true;
-                    }
-                }
-            }
-            return ret;
-        }
+        //                ret = true;
+        //            }
+        //        }
+        //    }
+        //    return ret;
+        //}
 
         [WebMethod]
         public static string AgregarOpcionDDL(string tipo, string valor)

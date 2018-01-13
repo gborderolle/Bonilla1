@@ -30,3 +30,4 @@ Login failed for user 'boniadmin'..
 12-Jan-18 14:38:15: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
 12-Jan-18 14:42:28: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
 12-Jan-18 14:43:45: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..
+13-Jan-18 17:54:06: [ln:33] System.Web.UI.Page: HandleError() - Excepcion no controlada. ERROR: Exception of type 'System.Web.HttpUnhandledException' was thrown..

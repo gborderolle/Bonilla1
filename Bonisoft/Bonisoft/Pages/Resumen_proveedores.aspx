@@ -506,7 +506,7 @@
     </div>
     <!-- Modal modificar pago END -->
 
-    <!-- Modal viaje ficticio BEGIN -->
+   <%-- <!-- Modal viaje ficticio BEGIN -->
     <div id="addFicticioModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true"
         style="display: none; max-width: 500px; overflow: hidden;" class="modal fade dark in">
 
@@ -539,7 +539,7 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-    <!-- Modal Viaje ficticio END -->
+    <!-- Modal Viaje ficticio END -->--%>
 
     <script type="text/javascript">
         setTimeout(loadInputDDL, 1000);

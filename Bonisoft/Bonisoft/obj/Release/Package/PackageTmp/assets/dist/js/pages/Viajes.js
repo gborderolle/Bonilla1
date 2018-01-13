@@ -384,7 +384,10 @@ function BorrarViajeEnCurso(viaje_ID) {
                         failure: function (response) {
                             show_message_info('Error_Datos');
                             $("#txbClave").val("");
-                        }
+                        },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                alert(xhr.status + " / " + thrownError);
+                            }
                     }); // Ajax
 
                     } else {
@@ -511,6 +514,9 @@ function guardarPesadas(isOrigen) {
                             failure: function (response) {
                                 show_message_info('Error_Datos');
 
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                alert(xhr.status + " / " + thrownError);
                             }
                         }); // Ajax
                     }
@@ -523,6 +529,9 @@ function guardarPesadas(isOrigen) {
             failure: function (response) {
                 show_message_info('Error_Datos');
 
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + " / " + thrownError);
             }
         }); // Ajax
 
@@ -614,7 +623,10 @@ function guardarAmbasPesadas() {
                 failure: function (response) {
                     show_message_info('Error_Datos');
 
-                }
+                },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                alert(xhr.status + " / " + thrownError);
+                            }
             }); // Ajax
     }
 }
@@ -706,6 +718,9 @@ function NuevoViaje() {
             failure: function (response) {
                 show_message_info('Error_Datos');
 
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + " / " + thrownError);
             }
         }); // Ajax
     }
@@ -963,7 +978,10 @@ function cargarDatos_PrecioVenta() {
             failure: function (response) {
                 show_message_info('Error_Datos');
 
-            }
+            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                alert(xhr.status + " / " + thrownError);
+                            }
         }); // Ajax
 
         //calcularPrecioVenta();
@@ -1139,6 +1157,9 @@ function ModificarViaje_1(viajeID) {
                 }, // end success
                 failure: function (response) {
                     show_message_info('Error_Datos');
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + " / " + thrownError);
                 }
             }); // Ajax
 
@@ -1215,6 +1236,9 @@ function ModificarViaje_2() {
             failure: function (response) {
                 show_message_info('Error_Datos');
 
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + " / " + thrownError);
             }
         }); // Ajax
     }
@@ -1336,11 +1360,6 @@ function FinDelViaje_2(viajeID) {
                     var txbNumeroFactura = $("#txbNumeroFactura").val();
                     if (txbNumeroFactura != null && txbNumeroFactura.length > 0) {
 
-
-                        //var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID");
-                        //if (hdn_notificaciones_viajeID !== null && hdn_notificaciones_viajeID.val() !== null && hdn_notificaciones_viajeID.val().length > 0) {
-                        //    var viajeID_str = hdn_notificaciones_viajeID.val();
-
                         // Ajax call parameters
                         console.log("Ajax call: Viajes.aspx/FinDelViaje. Params:");
                         console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
@@ -1350,7 +1369,7 @@ function FinDelViaje_2(viajeID) {
                             type: "POST",
                             url: "Viajes.aspx/FinDelViaje",
                             data: '{viajeID_str: "' + viajeID_str + '",txbNumeroFactura: "' + txbNumeroFactura + '"}',
-                                contentType: "application/json; charset=utf-8",
+                            contentType: "application/json; charset=utf-8",
                             dataType: "json",
                             success: function (response) {
                                 var result = response.d;
@@ -1385,7 +1404,9 @@ function FinDelViaje_2(viajeID) {
                             }, // end success
                             failure: function (response) {
                                 show_message_info('Error_Datos');
-
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                alert(xhr.status + " / " + thrownError);
                             }
                         }); // Ajax
                     } else {
@@ -1468,6 +1489,9 @@ function FinDelViaje() {
                         failure: function (response) {
                             show_message_info('Error_Datos');
 
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            alert(xhr.status + " / " + thrownError);
                         }
                     }); // Ajax
                 }
@@ -1561,6 +1585,9 @@ function GuardarPrecioVenta() {
                                     }, // end success
                                     failure: function (response) {
                                         alert(response.d);
+                                    },
+                                    error: function (xhr, ajaxOptions, thrownError) {
+                                        alert(xhr.status + " / " + thrownError);
                                     }
                                 });
                             }
@@ -1693,6 +1720,9 @@ function volverAEnCurso(viajeID) {
                         failure: function (response) {
                             show_message_info('Error_Datos');
 
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            alert(xhr.status + " / " + thrownError);
                         }
                     }); // Ajax
 

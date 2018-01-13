@@ -32,7 +32,7 @@
                         <div class="loginTitleText">Sistema de autenticación</div>
                     </div>
 
-                    <div class="loginFormContent">
+                    <div class="loginFormContent" style="margin-bottom:0;">
 
                         <div class="form-group">
                             Usuario:
@@ -45,17 +45,17 @@
 
                     </div>
                     <div class="loginFormButtonContainer" style="width: 100%;">
-                        <button type="button" id="btnSubmit" class="btn btn-primary" onclick="checkSubmit();" style="margin: auto; width: -webkit-fill-available;">
+                        <button type="button" id="btnSubmit" class="btn btn-primary btn-lg" onclick="checkSubmit();" style="margin: auto; width: -webkit-fill-available;">
                             <i class="fa fa-check"></i>&nbsp;Ingresar
                         </button>
                         <input type="submit" id="btnSubmit_candidato1" runat="server" onserverclick="btnSubmit_candidato1_ServerClick"
                             style="display: none;" class="btnSubmit_candidato" />
 
-                        <div class="loginFormMessageContainer" style="box-sizing: inherit; width: 100%;">
+                        <div class="loginFormMessageContainer" style="box-sizing: inherit; width: 100%; padding:0;">
                             <div class="loginWaitingMessage" style="display: none">
                                 <div></div>
                             </div>
-                            <div id="divMessages" class="alert alert-danger" role="alert" style="display: none; background-color: inherit; border-color: transparent; padding: 5px;">
+                            <div id="divMessages" class="alert alert-danger" role="alert" style="display: none; background-color: inherit; border-color: transparent; padding: 5px; margin-bottom:5px;">
                                 <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                                 <span class="sr-only">Error:</span>
                                 <label id="lblMessages" style="font-weight: normal;" />
