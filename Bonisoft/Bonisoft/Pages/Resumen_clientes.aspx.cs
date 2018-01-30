@@ -907,7 +907,7 @@ namespace Bonisoft.Pages
                         }
                     }
 
-                    
+
                 }
             }
         }
@@ -1292,14 +1292,14 @@ namespace Bonisoft.Pages
                             Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, monto_str);
                         }
 
-                            obj.Monto = value;
+                        obj.Monto = value;
 
                         int ddl = 0;
-                            if (!int.TryParse(ddlFormas, out ddl))
-                            {
-                                ddl = 0;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFormas);
-                            }
+                        if (!int.TryParse(ddlFormas, out ddl))
+                        {
+                            ddl = 0;
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFormas);
+                        }
                         obj.Forma_de_pago_ID = ddl;
 
                         context.cliente_pagos.Add(obj);
@@ -1588,12 +1588,12 @@ namespace Bonisoft.Pages
                             pago.Fecha_pago = date;
 
                             int ddl = 0;
+                            ddl = pago.Forma_de_pago_ID;
+                            if (!int.TryParse(ddlFormas, out ddl))
+                            {
                                 ddl = pago.Forma_de_pago_ID;
-                                if (!int.TryParse(ddlFormas, out ddl))
-                                {
-                                    ddl = pago.Forma_de_pago_ID;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFormas);
-                                }
+                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFormas);
+                            }
                             pago.Forma_de_pago_ID = ddl;
 
                             decimal value = pago.Monto;
@@ -1603,7 +1603,7 @@ namespace Bonisoft.Pages
                                 Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, monto_str);
                             }
 
-                                pago.Monto = value;
+                            pago.Monto = value;
 
                             pago.Comentarios = comentarios_str;
 
