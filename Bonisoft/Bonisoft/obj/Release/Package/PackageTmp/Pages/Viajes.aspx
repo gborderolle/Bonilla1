@@ -22,6 +22,35 @@
         $(function () {
             loadInputDDL();
         });
+
+        function DoubleScroll(element) {
+            var scrollbar = document.createElement('div');
+            scrollbar.appendChild(document.createElement('div'));
+            scrollbar.style.overflow = 'auto';
+            scrollbar.style.overflowY = 'hidden';
+            scrollbar.style.width = 'auto';
+            scrollbar.firstChild.style.width = element.scrollWidth + 'px';
+            scrollbar.firstChild.style.paddingTop = '1px';
+            scrollbar.firstChild.appendChild(document.createTextNode('\xA0'));
+            scrollbar.onscroll = function () {
+                element.scrollLeft = scrollbar.scrollLeft;
+            };
+            element.onscroll = function () {
+                scrollbar.scrollLeft = element.scrollLeft;
+            };
+            element.parentNode.insertBefore(scrollbar, element);
+        }
+
+        window.onload = function () {
+            DoubleScroll(document.getElementById('div_gridViajesEnCurso'));
+        }
+
+        function active_delayScroll() {
+            setTimeout(function(){ 
+                DoubleScroll(document.getElementById('div_gridViajes'));
+            }, 1000);
+        }
+        
     </script>
 
 </asp:Content>
@@ -187,7 +216,7 @@
             <div id="tabsViajes">
                 <ul>
                     <li><a href="#tabsViajes_1" id="aTabsViajes_1" class="tabViajes">Viajes en Curso</a></li>
-                    <li><a href="#tabsViajes_2" id="aTabsViajes_2" class="tabViajes">Histórico de Viajes</a></li>
+                    <li><a href="#tabsViajes_2" id="aTabsViajes_2" class="tabViajes" onclick="javascript:active_delayScroll();">Histórico de Viajes</a></li>
                 </ul>
 
                 <!-- Tab Viajes En Curso BEGIN -->
@@ -231,7 +260,7 @@
 
                                 <asp:Label ID="gridViajesEnCurso_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
 
-                                <div style="overflow: auto;">
+                                <div id="div_gridViajesEnCurso" style="overflow: auto;">
                                     <asp:GridView ID="gridViajesEnCurso" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
                                         AutoGenerateColumns="false" AllowPaging="false" CssClass="table table-hover table-striped" PageSize="30"
                                         DataKeyNames="Viaje_ID"
@@ -898,7 +927,7 @@
                                             <ContentTemplate>
 
                                                 <asp:Label ID="gridViajes_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-                                                <div style="overflow: auto;">
+                                                <div id="div_gridViajes" style="overflow: auto;">
                                                     <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False"
                                                         ShowFooter="False" CssClass="table table-hover table-striped" PageSize="30" AllowPaging="false"
                                                         DataKeyNames="Viaje_ID"

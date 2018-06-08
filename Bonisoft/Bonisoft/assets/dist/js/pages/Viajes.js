@@ -75,7 +75,6 @@ function weird_functions() {
     }(jQuery, window, document));
 }
 
-
 // attach the event binding function to every partial update
 Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args) {
     bindEvents();
