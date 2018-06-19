@@ -343,7 +343,7 @@ function BorrarViajeEnCurso(viaje_ID) {
                         url: "Viajes.aspx/BorrarViajeEnCurso",
                         data: '{viajeID_str: "' + viajeID_str + '", userID: "' + userID + '", clave_str: "' + txbClave + '"}',
                         contentType: "application/json; charset=utf-8",
-                        dataType: "json",
+                        //dataType: "json",
                         success: function (response) {
                             var resultado = response.d;
                             switch (resultado) {
@@ -422,7 +422,7 @@ function guardarPesadas(isOrigen) {
             url: "Viajes.aspx/Check_Mercaderias",
             data: '{viajeID_str: "' + viajeID_str + '"}',
             contentType: "application/json; charset=utf-8",
-            dataType: "json",
+            //dataType: "json",
             success: function (response) {
                 var ok = response.d;
                 if (ok) {
@@ -478,7 +478,7 @@ function guardarPesadas(isOrigen) {
                             data: '{viajeID_str: "' + viajeID_str + '",isOrigen: "' + isOrigen + '",pesadaID_str: "' + pesadaID_str + '",txb_pesadaLugar_str: "' + txb_pesadaLugar + '",txb_pesadaFecha_str: "' + txb_pesadaFecha + '", ' +
                                 'txb_pesadaPeso_bruto_str: "' + txb_pesadaPeso_bruto + '",txb_pesadaPeso_neto_str: "' + txb_pesadaPeso_neto + '", txb_pesadaComentarios_str: "' + txb_pesadaComentarios + '"}',
                             contentType: "application/json; charset=utf-8",
-                            dataType: "json",
+                            //dataType: "json",
                             success: function (response) {
                                 var resultado_1 = response.d;
 
@@ -605,7 +605,7 @@ function guardarAmbasPesadas() {
                 'txbMercaderiaValorProveedor: "' + txbMercaderiaValorProveedor + '",ddlTipoLena: "' + ddlTipoLena + '", txbMercaderia_Proveedor_Comentarios: "' + txbMercaderia_Proveedor_Comentarios + '"}',
 
                 contentType: "application/json; charset=utf-8",
-                dataType: "json",
+                //dataType: "json",
                 success: function (response) {
                     var resultado_1 = response.d;
                     var resultado_2 = resultado_1.split("|");
@@ -677,12 +677,14 @@ function NuevoViaje() {
         $.ajax({
             type: "POST",
             url: "Viajes.aspx/NuevoViaje",
+            contentType: "application/json; charset=utf-8",
             data: '{fecha1: "' + fecha1 + '",fecha2: "' + fecha2 + '",proveedor: "' + proveedor +
                 '",cliente: "' + cliente + '",cliente_barraca: "' + cliente_barraca + '",cargador: "' + cargador + '",lugar_carga: "' + lugar_carga + '",fletero: "' + fletero +
                 '",camion: "' + camion + '",chofer: "' + chofer + '",comentarios: "' + comentarios + '",esBarraca: "' + esBarraca + '"}',
-            contentType: "application/json; charset=utf-8",
             dataType: "json",
+
             success: function (response) {
+                console.log("ok");
                 var ok = response.d;
                 if (ok !== null && ok) {
 
@@ -712,13 +714,13 @@ function NuevoViaje() {
                 } else {
                     show_message_info('Error_Datos');
                 }
-
             }, // end success
             failure: function (response) {
+                console.log("failure");
                 show_message_info('Error_Datos');
-
             },
             error: function (xhr, ajaxOptions, thrownError) {
+                console.log("error");
                 alert(xhr.status + " / " + thrownError);
             }
         }); // Ajax
@@ -869,7 +871,7 @@ function cargarDatos_PrecioVenta() {
             url: "Viajes.aspx/Get_DatosVenta",
             data: '{viajeID_str: "' + viajeID_str + '"}',
             contentType: "application/json; charset=utf-8",
-            dataType: "json",
+            //dataType: "json",
             success: function (response) {
 
                 var datos = response.d;
@@ -1098,7 +1100,7 @@ function ModificarViaje_1(viajeID) {
                 url: "Viajes.aspx/ModificarViaje_1",
                 data: '{viajeID_str: "' + viajeID_str + '"}',
                 contentType: "application/json; charset=utf-8",
-                dataType: "json",
+                //dataType: "json",
                 success: function (response) {
                     var datos = response.d;
                     if (datos) {
@@ -1219,7 +1221,7 @@ function ModificarViaje_2() {
                 '",cliente: "' + cliente + '",cliente_barraca: "' + cliente_barraca + '",cargador: "' + cargador + '",lugar_carga: "' + lugar_carga + '",fletero: "' + fletero +
                 '",camion: "' + camion + '",chofer: "' + chofer + '",comentarios: "' + comentarios + '",esBarraca: "' + esBarraca + '"}',
             contentType: "application/json; charset=utf-8",
-            dataType: "json",
+            //dataType: "json",
             success: function (response) {
                 var ok = response.d;
                 if (ok !== null && ok) {
@@ -1301,7 +1303,7 @@ function confirmar_borrarViajeEnCurso() {
                         url: "Viajes.aspx/BorrarViajeEnCurso",
                         data: '{viajeID_str: "' + viajeID_str + '", userID: "' + userID + '", clave_str: "' + txbClave + '"}',
                         contentType: "application/json; charset=utf-8",
-                        dataType: "json",
+                        //dataType: "json",
                         success: function (response) {
                             var resultado = response.d;
                             switch (resultado) {
@@ -1367,9 +1369,9 @@ function FinDelViaje_2(viajeID) {
                         $.ajax({
                             type: "POST",
                             url: "Viajes.aspx/FinDelViaje",
-                            data: '{viajeID_str: "' + viajeID_str + '",txbNumeroFactura: "' + txbNumeroFactura + '"}',
                             contentType: "application/json; charset=utf-8",
-                            dataType: "json",
+                            data: '{viajeID_str: "' + viajeID_str + '",txbNumeroFactura: "' + txbNumeroFactura + '"}',
+                            //dataType: "json",
                             success: function (response) {
                                 var result = response.d;
                                 switch (result) {
@@ -1453,7 +1455,7 @@ function FinDelViaje() {
                         url: "Viajes.aspx/FinDelViaje",
                         data: '{viajeID_str: "' + viajeID_str + '"}',
                         contentType: "application/json; charset=utf-8",
-                        dataType: "json",
+                        //dataType: "json",
                         success: function (response) {
                             var result = response.d;
                             switch (result) {
@@ -1571,7 +1573,7 @@ function GuardarPrecioVenta() {
                                         'IVA_str: "' + IVA_str + '",mercaderiaValorCliente_str: "' + mercaderiaValorCliente_str + '", ' +
                                         'mercaderia_Cliente_Comentarios: "' + txbMercaderia_Cliente_Comentarios + '", precio_venta_str: "' + precio_venta_str + '", lblPrecioFleteTotal: "' + lblPrecioFleteTotal + '"}',
                                     contentType: "application/json; charset=utf-8",
-                                    dataType: "json",
+                                    //dataType: "json",
                                     success: function (response) {
                                         var precio_venta = response.d;
                                         if (precio_venta !== null) {
@@ -1702,7 +1704,7 @@ function volverAEnCurso(viajeID) {
                         url: "Viajes.aspx/VolverAEnCurso",
                         data: '{viajeID_str: "' + viajeID_str + '"}',
                         contentType: "application/json; charset=utf-8",
-                        dataType: "json",
+                        //dataType: "json",
                         success: function (response) {
                             var result = response.d;
                             

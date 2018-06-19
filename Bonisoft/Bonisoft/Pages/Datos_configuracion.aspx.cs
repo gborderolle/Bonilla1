@@ -27,6 +27,8 @@ namespace Bonisoft.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
+            Global_Objects.Logs.AddErrorLog("Testing.", className, methodName, userID_str);
+
             bool isAdmin = false;
             using (bonisoftEntities context = new bonisoftEntities())
             {

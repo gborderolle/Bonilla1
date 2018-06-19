@@ -30,11 +30,12 @@ function check_admin() {
         // Check user is Admin
         $.ajax({
             type: "POST",
-            url: "Datos_configuracion.aspx/CheckUserAdmin",
+            url: "Pages/Datos_configuracion.aspx/CheckUserAdmin",
             data: '{userID_str: "' + userID + '"}',
             contentType: "application/json; charset=utf-8",
-            dataType: "json",
+            //dataType: "json",
             success: function (response) {
+                console.log("ok");
                 var ok = response.d;
                 if (ok) {
                     $("#row_admin").show();
@@ -42,8 +43,12 @@ function check_admin() {
 
             }, // end success
             failure: function (response) {
+                console.log("failure");
                 show_message_info('Error_Datos');
-
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log("error");
+                alert(xhr.status + " / " + thrownError);
             }
         }); // Ajax
     }

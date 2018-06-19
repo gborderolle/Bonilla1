@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Bonisoft</RootNamespace>
     <AssemblyName>Bonisoft</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -31,7 +31,8 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -412,6 +413,7 @@
     <Content Include="assets\dist\js\pages\Resumen_clientes.js" />
     <Content Include="assets\dist\js\pages\Resumen_fleteros.js" />
     <Content Include="assets\dist\js\pages\Resumen_proveedores.js" />
+    <Content Include="assets\dist\js\pages\testing.js" />
     <Content Include="assets\dist\js\popbox.js" />
     <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_diagonals-thick_18_b81900_40x40.png" />
     <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_diagonals-thick_20_666666_40x40.png" />
@@ -1347,8 +1349,10 @@
     <Content Include="Pages\Resumen_clientes.aspx" />
     <Content Include="Pages\Resumen_fleteros.aspx" />
     <Content Include="Pages\Resumen_proveedores.aspx" />
+    <Content Include="Pages\Testing2.aspx" />
     <Content Include="Pages\Viajes.aspx" />
     <Content Include="SYS_NOTES.txt" />
+    <Content Include="Testing1.aspx" />
     <Content Include="User_Controls\Configuracion\Camion_ejes.ascx" />
     <Content Include="User_Controls\Configuracion\Formas_pago.ascx" />
     <Content Include="User_Controls\Configuracion\Usuarios.ascx" />
@@ -1647,6 +1651,13 @@
     <Compile Include="Pages\Resumen_proveedores.aspx.designer.cs">
       <DependentUpon>Resumen_proveedores.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Testing2.aspx.cs">
+      <DependentUpon>Testing2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Testing2.aspx.designer.cs">
+      <DependentUpon>Testing2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Viajes.aspx.cs">
       <DependentUpon>Viajes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1671,6 +1682,13 @@
     </Compile>
     <Compile Include="SiteHome.Master.designer.cs">
       <DependentUpon>SiteHome.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Testing1.aspx.cs">
+      <DependentUpon>Testing1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Testing1.aspx.designer.cs">
+      <DependentUpon>Testing1.aspx</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\Configuracion\Camion_ejes.ascx.cs">
       <DependentUpon>Camion_ejes.ascx</DependentUpon>
@@ -1821,15 +1839,14 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>8083</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:8083</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://192.168.1.2:8083</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

@@ -55,19 +55,26 @@ function check_admin() {
             $.ajax({
                 type: "POST",
                 url: "Datos_configuracion.aspx/CheckUserAdmin",
+                contentType: "application/json;charset=utf-8",
                 data: '{userID_str: "' + userID + '"}',
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
+                //dataType: "text json",
                 success: function (response) {
+                    console.log("ok");
                     var ok = response.d;
                     if (ok) {
                         $("#aMenuLogs").show();
                     }
-
                 }, // end success
                 failure: function (response) {
+                    console.log("failure");
                     show_message_info('Error_Datos');
-
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log("error");
+                    //console.log(response);
+                    console.log(ajaxOptions);
+                    console.log(xhr);
+                    alert(xhr.status + " / " + thrownError);
                 }
             }); // Ajax
         }
